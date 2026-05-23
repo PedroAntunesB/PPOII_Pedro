@@ -1,0 +1,10 @@
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: medium;
+}
+
+footer section a {
+  padding: 10px;
+}

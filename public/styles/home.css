@@ -1,0 +1,48 @@
+@import url("main.css");
+@import url("header.css");
+@import url("button-style.css");
+@import url("footer.css");
+:root {
+  --home-color: #8fb6d9a3;
+}
+
+main p {
+  margin: 10px;
+  font-size: larger;
+}
+
+main h1 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+main button {
+  width: 200px;
+  margin: 0 15px;
+}
+
+.cards-section {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #a4e0f967 67%, #8fb6d9, aliceblue);
+}
+
+.cards-section article {
+  margin: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cards-section article:hover {
+  transform: scale(1.01);
+  transition: 0.2s;
+}

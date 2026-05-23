@@ -1,0 +1,18 @@
+@import url("main.css");
+@import url("header.css");
+@import url("button-style.css");
+@import url("footer.css");
+
+main {
+  margin: 0;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+  margin-top: 120px;
+  padding: 40px;
+  border-radius: 8px;
+  background-color: white;
+}

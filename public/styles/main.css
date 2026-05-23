@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --back-color--: #eaf1f6;
+}
+
+main {
+  margin-top: 100px;
+  padding: 40px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--back-color--);
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:active {
+  color: inherit;
+}
+
+a:focus {
+  outline: none;
+}
