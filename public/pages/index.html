@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redachat - IA em Redação</title>
-    <link rel="stylesheet" href="../styles/home.css" />
-    <link rel="shortcut icon" href="/public/img/own.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/styles/home.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/own.png') }}"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
       <h1>
-        <a href="">Redachat</a>
+        <a href="/">Redachat</a>
       </h1>
       <div class="button-container">
-        <button>Login</button>
+        <button onclick="window.location.href = '/login'" class="bt-login">
+          Login
+        </button>
         <button>Criar Conta</button>
       </div>
     </header>
@@ -32,13 +38,19 @@
 
     <section class="cards-section">
       <article>
-        <img src="/public/img/star.png" alt="imagem estrela" />
+        <img
+          src="{{ url_for('static', filename='img/star.png') }}"
+          alt="imagem estrela"
+        />
         <h3>Simplicidade</h3>
         <p>Interface focada no que importa: o seu aprendizado.</p>
       </article>
       <article>
         <div>
-          <img src="/public/img/robot.png" alt="robo" />
+          <img
+            src="{{ url_for('static', filename='img/robot.png') }}"
+            alt="robo"
+          />
           <h3>IA Avançada</h3>
           <p>Tecnologia de ponta para análise gramatical e estrutural.</p>
         </div>
@@ -46,7 +58,7 @@
       <article>
         <div>
           <img
-            src="/public/img/south_america.png"
+            src="{{ url_for('static', filename='img/south_america.png') }}"
             alt="imagem america do sul"
           />
           <h3>Gratuito</h3>

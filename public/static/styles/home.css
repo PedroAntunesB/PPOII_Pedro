@@ -2,8 +2,13 @@
 @import url("header.css");
 @import url("button-style.css");
 @import url("footer.css");
+
 :root {
   --home-color: #8fb6d9a3;
+}
+
+main {
+  text-align: center;
 }
 
 main p {
@@ -23,17 +28,24 @@ main button {
 .cards-section {
   display: flex;
   width: 100%;
-  height: 50vh;
+  min-height: 50vh;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: linear-gradient(135deg, #a4e0f967 67%, #8fb6d9, aliceblue);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
 }
 
 .cards-section article {
-  margin: 50px;
+  margin: 20px;
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
-  height: 200px;
+  min-height: 200px;
+  width: 300px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,4 +57,27 @@ main button {
 .cards-section article:hover {
   transform: scale(1.01);
   transition: 0.2s;
+}
+
+@media (max-width: 768px) {
+  main p {
+    font-size: 1rem;
+  }
+
+  main button {
+    width: 100%;
+    max-width: 250px;
+    margin: 10px 0;
+  }
+
+  .cards-section {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 15px;
+  }
+
+  .cards-section article {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
