@@ -8,3 +8,7 @@ def main_page():
 @app.route("/login")
 def login_page():
     return render_template('login.html')
+
+@app.route("/criar-conta")
+def create_count_page():
+    return render_template('criar-conta.html')

@@ -5,4 +5,4 @@ app = Flask(__name__, template_folder="../public/pages", static_folder="../publi
 from views import *
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=3000)

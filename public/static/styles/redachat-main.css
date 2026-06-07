@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+
+.sidebar {
+  width: 280px;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.new-chat-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.history {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.history h3 {
+  margin-bottom: 12px;
+}
+
+.history ul {
+  list-style: none;
+}
+
+.history li {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.history li:hover {
+  background: #334155;
+}
+
+.user-account {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-account img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Main */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.analysis-box {
+  width: 100%;
+  max-width: 850px;
+}
+
+.analysis-box h1 {
+  margin-bottom: 20px;
+}
+
+.analysis-box textarea {
+  width: 100%;
+  height: 320px;
+  resize: none;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.analysis-box button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+/* Botão menu */
+
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  border: none;
+  background: #0f172a;
+  color: white;
+  font-size: 22px;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Fundo escuro */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 80px 20px 20px;
+  }
+
+  .analysis-box textarea {
+    height: 250px;
+  }
+
+  .analysis-box button {
+    width: 100%;
+  }
+}
