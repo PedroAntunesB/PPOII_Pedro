@@ -16,10 +16,6 @@ main p {
   font-size: larger;
 }
 
-main h1 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
-
 main button {
   width: 200px;
   margin: 0 15px;

@@ -12,3 +12,7 @@ def login_page():
 @app.route("/criar-conta")
 def create_count_page():
     return render_template('criar-conta.html')
+
+@app.route("/redachat-main")
+def redachat_page():
+    return render_template('redachat-main.html')
