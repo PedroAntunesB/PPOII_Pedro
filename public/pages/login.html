@@ -10,6 +10,7 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="../static/styles/form.css" />
+    <script defer src="../static/script/login.js"></script>
   </head>
   <body>
     <header>
@@ -17,7 +18,7 @@
         <a href="/">Redachat</a>
       </h1>
       <div class="button-container">
-        <button onclick="window.location.href = '/login'" class="bt-login">
+        <button onclick="window.location.href = '/login-page'" class="bt-login">
           Login
         </button>
         <button onclick="window.location.href = '/criar-conta'">
@@ -26,7 +27,7 @@
       </div>
     </header>
     <main>
-      <form action="">
+      <form id="login-form" action="">
         <div class="container">
           <h1>Bem-vindo de volta</h1>
           <p>acessar a sua conta para continuar</p>
@@ -37,7 +38,7 @@
         <label for="senha">Senha:</label><br />
         <input type="password" id="senha" name="senha" required /><br /><br />
 
-        <button type="submit">Enviar</button>
+        <button class="submit-button" type="submit">Enviar</button>
 
         <div class="cadastrar-redirect">
           <p>Não tem uma conta?</p>

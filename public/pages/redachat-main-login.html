@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redachat - Main</title>
+    <link rel="stylesheet" href="../static/styles/redachat-main.css" />
+    <script defer src="../static/script/redachat-main.js"></script>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/own.png') }}"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="/">Redachat</a>
+      </h1>
+      <div class="button-container">
+        <button onclick="window.location.href = '/login-page'" class="bt-login">
+          Login
+        </button>
+        <button onclick="window.location.href = '/criar-conta'">
+          Criar Conta
+        </button>
+      </div>
+    </header>
+
+    <div class="container">
+      <aside>
+        <h2>Historico de Redações</h2>
+        <div class="historico">
+          <div class="login-message">
+            <h3>Faça login</h3>
+            <p>Entre na sua conta para acessar este recurso.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <section class="user-area">
+          <h2>Área de Redação</h2>
+          <form
+            action="
+        "
+          >
+            <select name="" id="">
+              <option value="0">Escolher tema</option>
+              <option value="1">Tema 1</option>
+              <option value="2">Tema 2</option>
+              <option value="3">Tema 3</option>
+              <option value="4">Tema 4</option>
+            </select>
+            <input type="text" placeholder="Escreva seu titulo (Opcional)" />
+            <textarea
+              name=""
+              id=""
+              placeholder="Escreva aqui sua redação..."
+            ></textarea>
+          </form>
+          <button type="submit">Corrigir Redação</button>
+        </section>
+
+        <section class="chat-area">
+          <div class="area-resposta">
+            <h2>Área de Correção</h2>
+            <div class="chat-resposta">
+              <p>Aqui ficará a resposta da IA após o envio...</p>
+            </div>
+          </div>
+          <button>Refazer Analise</button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
