@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redachat - Main</title>
-    <link rel="stylesheet" href="../static/styles/redachat-main.css" />
+    <link rel="stylesheet" href="../static/styles/redachat.css" />
     <script defer src="../static/script/redachat-main.js"></script>
     <link
       rel="shortcut icon"
@@ -18,24 +18,14 @@
         <a href="/">Redachat</a>
       </h1>
       <div class="button-container">
-        <button onclick="window.location.href = '/login'" class="bt-login">
-          Login
-        </button>
-        <button onclick="window.location.href = '/criar-conta'">
-          Criar Conta
-        </button>
+        <button onclick="window.location.href = '/logout'">Sair</button>
       </div>
     </header>
 
     <div class="container">
       <aside>
         <h2>Historico de Redações</h2>
-        <div class="historico">
-          <div class="login-message">
-            <h3>Faça login</h3>
-            <p>Entre na sua conta para acessar este recurso.</p>
-          </div>
-        </div>
+        <div class="historico"></div>
       </aside>
 
       <main>

@@ -12,10 +12,11 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     }),
   });
 
-  if (response.redirected) {
-    window.location.href = response.url;
+  const data = await response.json();
+
+  if (data.success) {
+    window.location.href = data.redirect;
   } else {
-    const data = await response.json();
     alert(data.message);
   }
 });

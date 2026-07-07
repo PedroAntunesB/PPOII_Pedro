@@ -5,36 +5,47 @@
 }
 
 :root {
-  --back-color--: #eaf1f6;
+  --back-color: #eef3f8;
+  --text-color: #333;
+  --max-width: 1200px;
 }
 
-main {
-  margin-top: 100px;
-  padding: 40px;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-h1,
-h2 {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  background: var(--back-color);
+  color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--back-color--);
+  line-height: 1.6;
 }
 
-a:visited {
-  color: inherit;
+main {
+  width: min(100%, var(--max-width));
+  margin: 100px auto 60px;
+  padding: 20px;
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-a:active {
+h1,
+h2,
+h3 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #1f2937;
+}
+
+p {
+  color: #555;
+}
+
+a {
   color: inherit;
+  text-decoration: none;
 }
 
 a:focus {

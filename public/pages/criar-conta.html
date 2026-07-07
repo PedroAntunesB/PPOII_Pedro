@@ -10,6 +10,7 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="../static/styles/form.css" />
+    <script defer src="../static/script/criar-conta.js"></script>
   </head>
   <body>
     <header>
@@ -26,17 +27,26 @@
       </div>
     </header>
     <main>
-      <form action="">
+      <form id="register-form">
         <div class="container">
           <h1>Bem-vindo ao Redachat</h1>
           <p>Crie uma conta para continuar</p>
         </div>
-        <label for="email">E-mail:</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
 
-        <label for="senha">Senha:</label><br />
-        <input type="password" id="senha" name="senha" required /><br /><br />
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required />
 
+        <label for="confirmar-senha">Confirmar senha:</label>
+        <input
+          type="password"
+          id="confirmar-senha"
+          name="confirmar-senha"
+          required
+        />
         <button type="submit">Criar conta</button>
       </form>
     </main>

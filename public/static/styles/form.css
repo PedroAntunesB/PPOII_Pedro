@@ -25,22 +25,31 @@ form {
   min-height: 60vh;
   width: 100%;
   max-width: 500px;
-  margin-top: 70px;
-  padding: 40px;
+  padding: 30px;
   border-radius: 8px;
   background-color: white;
 }
 
 form input {
-  border-radius: 5px;
-  min-height: 40px;
-  border: 1px solid black;
   width: 100%;
-  padding: 0 10px;
+  height: 42px;
+  padding: 0 12px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  font-size: 14px;
+  outline: none;
+
+  transition: 0.2s;
 }
 
 label {
   font-size: large;
+}
+
+form button {
+  margin-top: 10px;
 }
 
 .cadastrar-redirect {
