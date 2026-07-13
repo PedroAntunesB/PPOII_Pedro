@@ -140,3 +140,4 @@ def redachat():
 def logout():
     logout_user()
     return redirect("/")
+

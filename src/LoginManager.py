@@ -9,7 +9,7 @@ def login_user(user_id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id, nome, email FROM users WHERE id = %s", (user_id))
+    cursor.execute("SELECT id, nome, email FROM users WHERE id = %s", (user_id,))
 
     user = cursor.fetchone()
     if user: 
