@@ -136,8 +136,51 @@ def redachat():
     return render_template("redachat-main.html")
 
 
+@app.route("/corrigir-redacao")
+def enviar_corrigir_redacao():
+
+    redacao = request.args.get("redacao")
+
+    if not redacao:
+        return jsonify({
+            "success": False,
+            "message": "Nenhuma redação foi enviada."
+        }), 400
+
+    # Teste
+    return jsonify({
+        "success": True,
+
+        "correcao": {
+            "nota": 920,
+
+            "competencia_1": 180,
+            "competencia_2": 200,
+            "competencia_3": 180,
+            "competencia_4": 180,
+            "competencia_5": 180,
+
+            "comentario": """
+                Sua redação apresenta boa organização e desenvolvimento das ideias.
+                Entretanto, há pequenos problemas de concordância e pontuação.
+
+                Pontos positivos:
+                - Boa introdução.
+                - Argumentação consistente.
+                - Conclusão adequada.
+
+                Pontos a melhorar:
+                - Revisar algumas construções gramaticais.
+                - Utilizar conectivos de forma mais variada.
+                - Desenvolver melhor o segundo argumento.
+            """,
+
+            "texto_corrigido": "Minha redação é muito boa."
+        }
+    }), 200
+
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect("/")
-

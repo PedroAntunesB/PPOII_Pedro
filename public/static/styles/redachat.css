@@ -10,8 +10,6 @@
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* ================= Layout ================= */
-
 .container {
   display: flex;
   gap: 24px;
@@ -24,8 +22,6 @@ main {
   gap: 24px;
   margin-top: unset;
 }
-
-/* ================= Aside ================= */
 
 aside {
   width: 320px;
@@ -41,8 +37,6 @@ aside h2 {
   margin-bottom: 20px;
   color: var(--button-color);
 }
-
-/* ================= Sections ================= */
 
 section {
   flex: 1;
@@ -72,8 +66,6 @@ section button {
 section button:hover {
   transform: translateY(-2px);
 }
-
-/* ================= Form ================= */
 
 form {
   display: flex;
@@ -117,34 +109,106 @@ textarea {
   font-family: inherit;
 }
 
-/* ================= Chat ================= */
-
 .chat-area {
   display: none;
 }
 
 .chat-resposta {
-  flex: 1;
+  display: flex;
 
-  min-height: 340px;
+  flex-direction: column;
 
-  background: var(--surface-color);
+  gap: 25px;
+}
 
-  border: 1px solid var(--border-color);
+/* ---------- Nota ---------- */
+
+.nota-geral {
+  text-align: center;
+
+  background: #eef5ff;
+
+  padding: 25px;
+
+  border-radius: 14px;
+}
+
+.nota-geral span {
+  color: #666;
+
+  font-size: 14px;
+}
+
+.nota-geral h1 {
+  margin-top: 8px;
+
+  color: var(--button-color);
+
+  font-size: 3.5rem;
+}
+
+/* ---------- Competências ---------- */
+
+.competencias {
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 15px;
+}
+
+.competencia {
+  background: #f8fafc;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  text-align: center;
+
+  border: 1px solid #e5e7eb;
+}
+
+.competencia h3 {
+  font-size: 15px;
+
+  margin-bottom: 8px;
+}
+
+.competencia p {
+  color: var(--button-color);
+
+  font-size: 22px;
+
+  font-weight: bold;
+}
+
+/* ---------- Comentários ---------- */
+
+.comentario,
+.texto-corrigido {
+  background: #fafafa;
 
   border-radius: 10px;
 
   padding: 20px;
 
-  overflow-y: auto;
+  border-left: 5px solid var(--button-color);
 }
 
-.chat-resposta p {
-  line-height: 1.7;
+.comentario h3,
+.texto-corrigido h3 {
+  margin-bottom: 10px;
+}
+
+.comentario p,
+.texto-corrigido p {
+  line-height: 1.8;
+
   color: #444;
-}
 
-/* ================= Histórico ================= */
+  white-space: pre-wrap;
+}
 
 .login-message {
   margin-top: 25px;
