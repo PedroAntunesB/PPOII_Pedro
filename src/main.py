@@ -12,4 +12,4 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=3000)
+    app.run(debug=True)

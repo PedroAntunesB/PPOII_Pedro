@@ -140,6 +140,13 @@ def redachat():
 def enviar_corrigir_redacao():
 
     redacao = request.args.get("redacao")
+    tema = request.args.get("tema")
+
+    if tema == "0" or tema == "":
+        return jsonify({
+            "success": False,
+            "message": "É necessario selecionar um tema."
+        }), 400
 
     if not redacao:
         return jsonify({
@@ -147,10 +154,13 @@ def enviar_corrigir_redacao():
             "message": "Nenhuma redação foi enviada."
         }), 400
 
-    # Teste
+
+
     return jsonify({
         "success": True,
-
+        
+        "tema": tema,
+        
         "correcao": {
             "nota": 920,
 
@@ -177,7 +187,7 @@ def enviar_corrigir_redacao():
 
             "texto_corrigido": "Minha redação é muito boa."
         }
-    }), 200
+    })
 
 
 @app.route("/logout")

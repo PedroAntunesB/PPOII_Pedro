@@ -1,6 +1,6 @@
-export default async function corrigirRedacao(texto) {
+export default async function corrigirRedacao(texto, tema) {
   const response = await fetch(
-    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}`,
+    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}`,
   );
 
   const data = await response.json();
@@ -13,16 +13,16 @@ export default async function corrigirRedacao(texto) {
   const correcao = data.correcao;
 
   document.querySelector(".chat-area").style.display = "flex";
-
   document.querySelector(".chat-resposta").innerHTML = `
-
         <div class="resultado">
 
             <div class="nota-geral">
-
-                <span>Nota Final</span>
-
-                <h1>${correcao.nota}</h1>
+            
+            <span>Nota Final</span>
+            
+            <h1>${correcao.nota}</h1>
+            
+            <h2>Tema: ${data.tema}</h2>
 
             </div>
 
@@ -74,4 +74,8 @@ export default async function corrigirRedacao(texto) {
         </div>
 
     `;
+  document.querySelector(".chat-area").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
 }

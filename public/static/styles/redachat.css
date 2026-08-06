@@ -12,8 +12,8 @@
 
 .container {
   display: flex;
-  gap: 24px;
-  padding: 24px;
+  padding: 15px 30px;
+  height: auto;
 }
 
 main {
@@ -28,8 +28,9 @@ aside {
   min-width: 320px;
   background: var(--card-bg);
   border-radius: 16px;
-  padding: 24px;
+  padding: 22px;
   box-shadow: var(--shadow);
+  height: 650px;
 }
 
 aside h2 {
@@ -121,8 +122,6 @@ textarea {
   gap: 25px;
 }
 
-/* ---------- Nota ---------- */
-
 .nota-geral {
   text-align: center;
 
@@ -182,8 +181,6 @@ textarea {
 
   font-weight: bold;
 }
-
-/* ---------- Comentários ---------- */
 
 .comentario,
 .texto-corrigido {
