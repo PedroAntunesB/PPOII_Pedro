@@ -9,7 +9,9 @@ document
     const confirmarSenha = document.getElementById("confirmar-senha").value;
 
     if (senha !== confirmarSenha) {
-      alert("As senhas não coincidem.");
+      const modal = document.getElementById("modal");
+      modal.querySelector("p").textContent = "As senhas não coincidem";
+      modal.showModal();
       return;
     }
 
@@ -30,6 +32,9 @@ document
     if (data.success) {
       window.location.href = data.redirect;
     } else {
-      alert(data.message);
+      const modal = document.getElementById("modal");
+      modal.querySelector("p").textContent = data.message;
+      modal.showModal();
+      return;
     }
   });

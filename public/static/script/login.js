@@ -17,6 +17,9 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   if (data.success) {
     window.location.href = data.redirect;
   } else {
-    alert(data.message);
+    const modal = document.getElementById("modal");
+    modal.querySelector("p").textContent = data.message;
+    modal.showModal();
+    return;
   }
 });

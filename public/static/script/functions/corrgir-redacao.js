@@ -7,7 +7,6 @@ export default async function corrigirRedacao(texto, tema) {
   const data = await response.json();
 
   if (!data.success) {
-    // alert(data.message);
     const modal = document.getElementById("modal");
     modal.querySelector("p").textContent = data.message;
     modal.showModal();

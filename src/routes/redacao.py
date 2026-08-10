@@ -1,8 +1,12 @@
 from flask import Blueprint, request, jsonify
+from database import get_connection
+from User import User
+from flask_login import login_required, current_user
 
 redacao_routes = Blueprint("redacao", __name__)
 
 @redacao_routes.route("/corrigir-redacao")
+@login_required
 def enviar_corrigir_redacao():
 
     redacao = request.args.get("redacao")
@@ -12,13 +16,13 @@ def enviar_corrigir_redacao():
         return jsonify({
             "success": False,
             "message": "É necessario selecionar um tema."
-        }), 400
+        }), 422
 
     if not redacao:
         return jsonify({
             "success": False,
             "message": "Nenhuma redação foi enviada."
-        }), 400
+        }), 422
 
     return jsonify({
         "success": True,
@@ -52,3 +56,30 @@ def enviar_corrigir_redacao():
             "texto_corrigido": "Minha redação é muito boa."
         }
     })
+
+
+
+@redacao_routes.route("/get-redacoes")
+@login_required
+def get_old_redacoes():
+    conn = get_connection()
+    cursor = conn.cursor()
+    user_id = current_user.id
+
+    cursor.execute(
+        "SELECT * FROM chats WHERE user_id = %s",
+        (user_id, )
+    )
+
+    historico_redacoes = cursor.fetchall()
+
+    if not historico_redacoes: 
+        return jsonify({
+            "success": False,
+            "message": "Usuário não possui redações"
+        }), 404
+
+    return jsonify({
+        "success": True,
+        "historico": historico_redacoes
+    }), 200

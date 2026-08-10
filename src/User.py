@@ -4,4 +4,7 @@ class User(UserMixin):
         self.id = id
         self.nome = nome
         self.email = email
+    
+    def __str__(self):
+        return "classe ususario"
 

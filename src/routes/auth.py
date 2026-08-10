@@ -45,7 +45,7 @@ def login():
 
     login_user(user)
 
-    print(f"Login do usuário com id {user.id} realizado com sucesso.")
+    # print(f"Login do usuário com id {user.id} realizado com sucesso.")
 
     return jsonify({
         "success": True,

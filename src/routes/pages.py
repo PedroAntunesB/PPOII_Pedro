@@ -18,11 +18,6 @@ def login_view():
 def create_account_page():
     return render_template("criar-conta.html")
 
-@app_pages.route("/redachat-main")
-@login_required
-def redachat():
-    return render_template("redachat-main.html")
-
 @app_pages.route("/logout")
 def logout():
     logout_user()
