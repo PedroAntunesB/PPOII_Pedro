@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from database import get_connection
-from User import User
+from ..database import get_connection
+from ..User import User
 from flask_login import login_required, current_user
 
 redacao_routes = Blueprint("redacao", __name__)

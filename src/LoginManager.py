@@ -1,6 +1,6 @@
 from flask_login import LoginManager
-from database import get_connection
-from User import User
+from .database import get_connection
+from .User import User
 from flask import render_template
 
 login_manager = LoginManager()

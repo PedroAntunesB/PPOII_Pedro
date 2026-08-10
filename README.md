@@ -5,5 +5,11 @@
 Para rodar o projeto:
 
 ```
-flask --app src/main.py --debug run --host="0.0.0.0"
+python -m src.main
+```
+
+ou
+
+```
+gunicorn src.main:app
 ```
