@@ -5,6 +5,3 @@ class User(UserMixin):
         self.nome = nome
         self.email = email
     
-    def __str__(self):
-        return "classe ususario"
-

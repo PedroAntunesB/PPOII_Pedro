@@ -1,4 +1,6 @@
 import corrigirRedacao from "./functions/corrgir-redacao.js";
+import getHistorico from "./functions/get-historico.js";
+getHistorico();
 const texto = document.querySelector("textarea");
 texto.value = "";
 const select = document.querySelector("select");

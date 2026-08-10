@@ -57,8 +57,6 @@ def enviar_corrigir_redacao():
         }
     })
 
-
-
 @redacao_routes.route("/get-redacoes")
 @login_required
 def get_old_redacoes():
