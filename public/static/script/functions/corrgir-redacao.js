@@ -1,3 +1,4 @@
+import criarElemento from "./criarElemento.js";
 export default async function corrigirRedacao(texto, tema) {
   const response = await fetch(
     `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}`,
@@ -6,74 +7,69 @@ export default async function corrigirRedacao(texto, tema) {
   const data = await response.json();
 
   if (!data.success) {
-    alert(data.message);
+    // alert(data.message);
+    const modal = document.getElementById("modal");
+    modal.querySelector("p").textContent = data.message;
+    modal.showModal();
     return;
   }
 
   const correcao = data.correcao;
-
   document.querySelector(".chat-area").style.display = "flex";
-  document.querySelector(".chat-resposta").innerHTML = `
-        <div class="resultado">
 
-            <div class="nota-geral">
-            
-            <span>Nota Final</span>
-            
-            <h1>${correcao.nota}</h1>
-            
-            <h2>Tema: ${data.tema}</h2>
+  const chatResposta = document.querySelector(".chat-resposta");
+  chatResposta.innerHTML = "";
 
-            </div>
+  const resultado = criarElemento("div", "nota-geral");
+  const notaFinal = criarElemento("span", null, "Nota Final");
+  const nota = criarElemento("h1", null, correcao.nota);
+  const tema_div = criarElemento("h2", null, `Tema: ${data.tema}`);
+  resultado.appendChild(notaFinal);
+  resultado.appendChild(nota);
+  resultado.appendChild(tema_div);
+  chatResposta.appendChild(resultado);
 
-            <div class="competencias">
+  const competencias = criarElemento("div", "competencias");
 
-                <div class="competencia">
-                    <h3>Competência 1</h3>
-                    <p>${correcao.competencia_1}/200</p>
-                </div>
+  const notasCompetencias = [
+    correcao.competencia_1,
+    correcao.competencia_2,
+    correcao.competencia_3,
+    correcao.competencia_4,
+    correcao.competencia_5,
+  ];
 
-                <div class="competencia">
-                    <h3>Competência 2</h3>
-                    <p>${correcao.competencia_2}/200</p>
-                </div>
+  notasCompetencias.forEach((nota, index) => {
+    const competencia = criarElemento("div", "competencia");
+    const titulo = criarElemento("h3", null, `Competência ${index + 1}`);
+    const pontuacao = criarElemento("p", null, `${nota}/200`);
+    competencia.appendChild(titulo);
+    competencia.appendChild(pontuacao);
+    competencias.appendChild(competencia);
+  });
+  const comentario = criarElemento("div", "comentario");
 
-                <div class="competencia">
-                    <h3>Competência 3</h3>
-                    <p>${correcao.competencia_3}/200</p>
-                </div>
+  const tituloComentario = criarElemento("h3", null, "Comentários");
 
-                <div class="competencia">
-                    <h3>Competência 4</h3>
-                    <p>${correcao.competencia_4}/200</p>
-                </div>
+  const textoComentario = criarElemento("p", null, correcao.comentario);
 
-                <div class="competencia">
-                    <h3>Competência 5</h3>
-                    <p>${correcao.competencia_5}/200</p>
-                </div>
+  comentario.appendChild(tituloComentario);
+  comentario.appendChild(textoComentario);
 
-            </div>
+  const textoCorrigido = criarElemento("div", "texto-corrigido");
 
-            <div class="comentario">
+  const tituloTexto = criarElemento("h3", null, "Texto corrigido");
 
-                <h3>Comentários</h3>
+  const ElTexto = criarElemento("p", null, correcao.texto_corrigido);
 
-                <p>${correcao.comentario}</p>
+  textoCorrigido.appendChild(tituloTexto);
+  textoCorrigido.appendChild(ElTexto);
 
-            </div>
+  chatResposta.appendChild(resultado);
+  chatResposta.appendChild(competencias);
+  chatResposta.appendChild(comentario);
+  chatResposta.appendChild(textoCorrigido);
 
-            <div class="texto-corrigido">
-
-                <h3>Texto corrigido</h3>
-
-                <p>${correcao.texto_corrigido}</p>
-
-            </div>
-
-        </div>
-
-    `;
   document.querySelector(".chat-area").scrollIntoView({
     behavior: "smooth",
     block: "start",

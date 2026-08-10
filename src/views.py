@@ -1,20 +1,20 @@
-from flask import render_template, redirect, request, jsonify
+from flask import render_template, redirect, request, jsonify, Blueprint
 from flask_login import logout_user, login_required, login_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from main import app
 from database import get_connection
 from User import User
 
+app_bp = Blueprint('app', __name__)
 
-@app.route("/")
+@app_bp.route("/")
 def home():
     if current_user.is_authenticated:
         return render_template("redachat-main.html")
     return render_template("index.html")
 
 
-@app.route("/login", methods=["POST"])
+@app_bp.route("/login", methods=["POST"])
 def login():
     conn = get_connection()
     cursor = conn.cursor()
@@ -60,7 +60,7 @@ def login():
         "redirect": "/"
     }), 200
 
-@app.route("/criar", methods=["POST"])
+@app_bp.route("/criar", methods=["POST"])
 def criar_usuario():
     conn = get_connection()
     cursor = conn.cursor()
@@ -115,28 +115,21 @@ def criar_usuario():
     }), 201
 
 
-@app.route("/login-page")
+@app_bp.route("/login-page")
 def login_view():
     return render_template("login.html")
 
 
-@app.route("/criar-conta")
+@app_bp.route("/criar-conta")
 def create_account_page():
     return render_template("criar-conta.html")
 
-
-@app.route("/redachat-test")
-def redachat_test():
-    return render_template("redachat-test.html")
-
-
-@app.route("/redachat-main")
+@app_bp.route("/redachat-main")
 @login_required
 def redachat():
     return render_template("redachat-main.html")
 
-
-@app.route("/corrigir-redacao")
+@app_bp.route("/corrigir-redacao")
 def enviar_corrigir_redacao():
 
     redacao = request.args.get("redacao")
@@ -153,8 +146,6 @@ def enviar_corrigir_redacao():
             "success": False,
             "message": "Nenhuma redação foi enviada."
         }), 400
-
-
 
     return jsonify({
         "success": True,
@@ -189,8 +180,7 @@ def enviar_corrigir_redacao():
         }
     })
 
-
-@app.route("/logout")
+@app_bp.route("/logout")
 def logout():
     logout_user()
     return redirect("/")
