@@ -73,11 +73,6 @@ export default async function corrigirRedacao(texto, tema) {
   chatResposta.appendChild(comentario);
   chatResposta.appendChild(textoCorrigido);
 
-  document.querySelector(".chat-area").scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-
   document.querySelector(".button-submit").style.display = "none";
   document.querySelector(".button-refazer").style.display = "block";
 }

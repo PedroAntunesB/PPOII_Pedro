@@ -1,14 +1,14 @@
 export default async function getHistorico() {
   const response = await fetch("/get-redacoes");
 
-  if (response.success || response === undefined) {
+  if (response.success) {
     return;
   }
 
   const historico = (await response.json()).historico;
   const historicoDiv = document.querySelector(".historico");
 
-  if (!historicoDiv) {
+  if (!historicoDiv || historico === undefined) {
     return;
   }
 
