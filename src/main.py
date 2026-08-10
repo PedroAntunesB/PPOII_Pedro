@@ -18,4 +18,4 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

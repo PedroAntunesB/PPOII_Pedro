@@ -1,3 +1,4 @@
+import { postRedacao } from "./add-redacao.js";
 import criarElemento from "./criarElemento.js";
 export default async function corrigirRedacao(texto, tema) {
   const response = await fetch(
@@ -14,6 +15,9 @@ export default async function corrigirRedacao(texto, tema) {
   }
 
   const correcao = data.correcao;
+
+  postRedacao(data);
+
   document.querySelector(".chat-area").style.display = "flex";
 
   const chatResposta = document.querySelector(".chat-resposta");
@@ -73,4 +77,7 @@ export default async function corrigirRedacao(texto, tema) {
     behavior: "smooth",
     block: "start",
   });
+
+  document.querySelector(".button-submit").style.display = "none";
+  document.querySelector(".button-refazer").style.display = "block";
 }

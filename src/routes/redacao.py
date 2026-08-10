@@ -23,11 +23,12 @@ def enviar_corrigir_redacao():
             "success": False,
             "message": "Nenhuma redação foi enviada."
         }), 422
-
-    return jsonify({
+    response = jsonify({
         "success": True,
         
         "tema": tema,
+
+        "user_text": redacao,
         
         "correcao": {
             "nota": 920,
@@ -57,6 +58,10 @@ def enviar_corrigir_redacao():
         }
     })
 
+    
+
+    return response
+
 @redacao_routes.route("/get-redacoes")
 @login_required
 def get_old_redacoes():
@@ -65,11 +70,14 @@ def get_old_redacoes():
     user_id = current_user.id
 
     cursor.execute(
-        "SELECT * FROM chats WHERE user_id = %s",
+        "SELECT tema, data_criacao FROM chats WHERE user_id = %s",
         (user_id, )
     )
 
-    historico_redacoes = cursor.fetchall()
+    historico_redacoes = cursor.fetchmany(4)
+
+    conn.close()
+    cursor.close()
 
     if not historico_redacoes: 
         return jsonify({
@@ -81,3 +89,56 @@ def get_old_redacoes():
         "success": True,
         "historico": historico_redacoes
     }), 200
+
+@redacao_routes.route("/post-redacao", methods=["POST"])
+@login_required
+def post_new_redacao():
+
+    data = request.get_json()
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO chats (
+            user_id,
+            texto_user,
+            texto_llm,
+            tema,
+            nota,
+            competencia1,
+            competencia2,
+            competencia3,
+            competencia4,
+            competencia5,
+            comentario
+        )
+        VALUES (
+            %s, %s, %s, %s, %s,
+            %s, %s, %s, %s, %s, %s
+        )
+        """,
+        (
+            current_user.id,
+            data["user_text"],
+            data["correcao"]["texto_corrigido"],
+            data["tema"],
+            data["correcao"]["nota"],
+            data["correcao"]["competencia_1"],
+            data["correcao"]["competencia_2"],
+            data["correcao"]["competencia_3"],
+            data["correcao"]["competencia_4"],
+            data["correcao"]["competencia_5"],
+            data["correcao"]["comentario"]
+        )
+    )
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "message": "Redação salva com sucesso."
+    }), 201
