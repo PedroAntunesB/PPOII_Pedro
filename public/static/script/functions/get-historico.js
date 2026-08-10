@@ -1,7 +1,7 @@
 export default async function getHistorico() {
   const response = await fetch("/get-redacoes");
 
-  if (response.success) {
+  if (response.success || response === undefined) {
     return;
   }
 

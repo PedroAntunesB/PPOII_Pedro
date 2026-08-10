@@ -3,7 +3,7 @@ CREATE TABLE Chats (
   user_id INT,
   texto_user TEXT NOT NULL,
   texto_llm TEXT NOT NULL,
-  data_criacao TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+  data_criacao TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
   tema VARCHAR(100),
   nota INT, 
   competencia1 INT,
@@ -11,6 +11,6 @@ CREATE TABLE Chats (
   competencia3 INT,
   competencia4 INT,
   competencia5 INT,
-  comentario TEXT
+  comentario TEXT,
   FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
