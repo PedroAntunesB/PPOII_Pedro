@@ -13,7 +13,25 @@
 .container {
   display: flex;
   padding: 15px 30px;
-  height: auto;
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+aside {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+
+aside h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--button-color);
 }
 
 main {
@@ -22,22 +40,7 @@ main {
   gap: 24px;
   margin-top: unset;
   flex-direction: row;
-}
-
-aside {
-  width: 320px;
-  min-width: 320px;
-  background: var(--card-bg);
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: var(--shadow);
-  height: 650px;
-}
-
-aside h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--button-color);
+  width: 100%;
 }
 
 section {
@@ -48,8 +51,8 @@ section {
   border-radius: 16px;
   padding: 24px;
   box-shadow: var(--shadow);
-  width: 50%;
   height: fit-content;
+  width: 100%;
 }
 
 section h2 {
@@ -77,6 +80,7 @@ form input,
 form select,
 form textarea {
   width: 100%;
+  box-sizing: border-box;
 }
 
 input,
@@ -104,8 +108,8 @@ textarea:focus {
 }
 
 textarea {
-  resize: none;
-  min-height: 340px;
+  resize: vertical;
+  min-height: 250px;
   font-family: inherit;
 }
 
@@ -115,40 +119,32 @@ textarea {
 
 .chat-resposta {
   display: flex;
-
   flex-direction: column;
-
-  gap: 40px;
+  gap: 30px;
 }
 
 .nota-geral {
   text-align: center;
-
   background: #eef5ff;
-
   padding: 25px;
-
   border-radius: 14px;
 }
 
 .nota-geral span {
   color: #666;
-
   font-size: 14px;
 }
 
 .nota-geral h1 {
   margin-top: 8px;
-
   color: var(--button-color);
-
   font-size: 3.5rem;
 }
 
 .competencias {
   display: grid;
-  grid-template-columns: repeat(5, 0.2fr);
-  gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
 }
 
 .competencia {
@@ -160,27 +156,21 @@ textarea {
 }
 
 .competencia h3 {
-  font-size: 15px;
-
+  font-size: 14px;
   margin-bottom: 8px;
 }
 
 .competencia p {
   color: var(--button-color);
-
-  font-size: 22px;
-
+  font-size: 20px;
   font-weight: bold;
 }
 
 .comentario,
 .texto-corrigido {
   background: #fafafa;
-
   border-radius: 10px;
-
   padding: 20px;
-
   border-left: 5px solid var(--button-color);
 }
 
@@ -192,33 +182,22 @@ textarea {
 .comentario p,
 .texto-corrigido p {
   line-height: 1.8;
-
   color: #444;
-
   white-space: pre-wrap;
 }
 
 .login-message {
   margin-top: 25px;
-
   min-height: 220px;
-
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
-
   text-align: center;
-
   gap: 14px;
-
   padding: 25px;
-
   border: 2px dashed #d1d5db;
-
   border-radius: 14px;
-
   background: var(--surface-color);
 }
 
@@ -239,7 +218,6 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   margin-top: 20px;
   width: 100%;
 }
@@ -247,31 +225,25 @@ textarea {
 .historico-item {
   width: 100%;
   padding: 14px 16px;
-
   background-color: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-
   cursor: pointer;
-
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 .historico-item:hover {
   background-color: #eff6ff;
   border-color: var(--button-color);
-
   transform: translateX(3px);
 }
 
 .historico-item p {
   margin: 0 0 6px 0;
-
   font-size: 0.95rem;
   font-weight: 600;
-
   color: #334155;
-
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -279,7 +251,6 @@ textarea {
 
 .historico-item span {
   display: block;
-
   font-size: 0.8rem;
   color: #94a3b8;
 }
@@ -293,14 +264,12 @@ textarea {
 .historico-botoes button {
   padding: 6px 10px;
   margin: 0;
-
   font-size: 0.8rem;
   border-radius: 5px;
 }
 
 .botao-abrir {
   flex: 1;
-
   background-color: #3b82f6;
   color: white;
 }
@@ -311,7 +280,6 @@ textarea {
 
 .botao-deletar {
   flex: 1;
-
   background-color: #ef4444;
   color: white;
 }
@@ -333,10 +301,125 @@ textarea {
   text-decoration: none;
   font-weight: 600;
   transition: 0.2s ease;
+  box-sizing: border-box;
 }
 
 .historico-link:hover {
   color: white;
   background-color: var(--button-color);
   transform: translateY(-1px);
+}
+
+/* --- BOTÃO TOGGLE DO HISTÓRICO --- */
+
+/* Oculto por padrão em telas grandes (Desktop) */
+.toggle-historico-btn {
+  display: none;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--button-color);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-historico-btn:hover {
+  background-color: #eef5ff;
+}
+
+/* Seta do botão toggle */
+.toggle-historico-btn::after {
+  content: "▲";
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+/* Rotaciona a seta quando fechado */
+.toggle-historico-btn.closed::after {
+  transform: rotate(180deg);
+}
+
+/* --- REGRAS PARA DISPOSITIVOS MÓVEIS --- */
+@media (max-width: 1024px) {
+  /* Exibe o botão toggle no mobile */
+  .toggle-historico-btn {
+    display: flex;
+  }
+
+  /* Oculta o título fixo do aside no mobile (o botão assume essa função) */
+  aside h2 {
+    display: none;
+  }
+
+  /* Esconde o conteúdo por padrão quando a classe .closed estiver ativa */
+  aside.closed .historico,
+  aside.closed .historico-link {
+    display: none;
+  }
+
+  /* Animação suave de entrada do conteúdo */
+  aside:not(.closed) .historico {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  aside {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 12px;
+  }
+
+  aside,
+  section {
+    padding: 16px;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+
+  .competencias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nota-geral h1 {
+    font-size: 2.5rem;
+  }
 }
