@@ -1,3 +1,5 @@
+import addItemDiv from "./add-item-historico.js";
+
 export default async function getHistorico() {
   const response = await fetch("/get-redacoes");
 
@@ -33,34 +35,7 @@ export default async function getHistorico() {
   }
 
   historico.forEach((redacao) => {
-    const item = document.createElement("div");
-    item.classList.add("historico-item");
-    const tema = document.createElement("p");
-    tema.textContent = `Redação tema: ${redacao[0]}`;
-    const data = document.createElement("span");
-    data.textContent = redacao[1];
-    item.appendChild(tema);
-    item.appendChild(data);
-    historicoDiv.appendChild(item);
-    const botoes = document.createElement("div");
-    botoes.classList.add("historico-botoes");
-
-    const botaoAbrir = document.createElement("button");
-    botaoAbrir.classList.add("botao-abrir");
-    botaoAbrir.textContent = "Abrir";
-
-    const botaoDeletar = document.createElement("button");
-    botaoDeletar.classList.add("botao-deletar");
-    botaoDeletar.textContent = "Excluir";
-
-    botoes.appendChild(botaoAbrir);
-    botoes.appendChild(botaoDeletar);
-
-    item.appendChild(tema);
-    item.appendChild(data);
-    item.appendChild(botoes);
-
-    historicoDiv.appendChild(item);
+    addItemDiv(redacao, historicoDiv);
   });
 
   if (historico.length >= 4) {

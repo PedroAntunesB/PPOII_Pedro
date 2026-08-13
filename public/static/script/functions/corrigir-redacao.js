@@ -1,8 +1,10 @@
+import addItemDiv from "./add-item-historico.js";
 import { postRedacao } from "./add-redacao.js";
 import criarElemento from "./criarElemento.js";
-export default async function corrigirRedacao(texto, tema) {
+import getHistorico from "./get-historico.js";
+export default async function corrigirRedacao(texto, tema, nome) {
   const response = await fetch(
-    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}`,
+    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}&nome=${encodeURIComponent(nome)}`,
   );
 
   const data = await response.json();
@@ -75,4 +77,6 @@ export default async function corrigirRedacao(texto, tema) {
 
   document.querySelector(".button-submit").style.display = "none";
   document.querySelector(".button-refazer").style.display = "block";
+
+  await getHistorico();
 }

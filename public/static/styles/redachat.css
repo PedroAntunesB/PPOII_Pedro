@@ -310,9 +310,6 @@ textarea {
   transform: translateY(-1px);
 }
 
-/* --- BOTÃO TOGGLE DO HISTÓRICO --- */
-
-/* Oculto por padrão em telas grandes (Desktop) */
 .toggle-historico-btn {
   display: none;
   width: 100%;
@@ -333,37 +330,30 @@ textarea {
   background-color: #eef5ff;
 }
 
-/* Seta do botão toggle */
 .toggle-historico-btn::after {
   content: "▲";
   font-size: 0.8rem;
   transition: transform 0.3s ease;
 }
 
-/* Rotaciona a seta quando fechado */
 .toggle-historico-btn.closed::after {
   transform: rotate(180deg);
 }
 
-/* --- REGRAS PARA DISPOSITIVOS MÓVEIS --- */
 @media (max-width: 1024px) {
-  /* Exibe o botão toggle no mobile */
   .toggle-historico-btn {
     display: flex;
   }
 
-  /* Oculta o título fixo do aside no mobile (o botão assume essa função) */
   aside h2 {
     display: none;
   }
 
-  /* Esconde o conteúdo por padrão quando a classe .closed estiver ativa */
   aside.closed .historico,
   aside.closed .historico-link {
     display: none;
   }
 
-  /* Animação suave de entrada do conteúdo */
   aside:not(.closed) .historico {
     animation: fadeIn 0.3s ease-in-out;
   }

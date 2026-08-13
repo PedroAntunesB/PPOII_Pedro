@@ -12,5 +12,6 @@ CREATE TABLE Chats (
   competencia4 INT,
   competencia5 INT,
   comentario TEXT,
+  nome VARCHAR(500),
   FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );

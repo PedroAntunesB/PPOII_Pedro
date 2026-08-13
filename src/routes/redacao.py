@@ -11,6 +11,7 @@ def enviar_corrigir_redacao():
 
     redacao = request.args.get("redacao")
     tema = request.args.get("tema")
+    nome = request.args.get("nome")
 
     if tema == "0" or tema == "":
         return jsonify({
@@ -18,13 +19,24 @@ def enviar_corrigir_redacao():
             "message": "É necessario selecionar um tema."
         }), 422
 
+    if not nome: 
+        return jsonify({
+            "success": False,
+            "message": "É necessário digitar um nome para a redação"
+        }), 422
+
     if not redacao:
         return jsonify({
             "success": False,
             "message": "Nenhuma redação foi enviada."
         }), 422
+
+    
+    
     response = jsonify({
         "success": True,
+
+        "nome_redacao": nome,
         
         "tema": tema,
 
@@ -70,7 +82,7 @@ def get_old_redacoes():
     user_id = current_user.id
 
     cursor.execute(
-        "SELECT tema, data_criacao FROM chats WHERE user_id = %s",
+        "SELECT tema, nome_redacao FROM chats WHERE user_id = %s",
         (user_id, )
     )
 
@@ -111,11 +123,12 @@ def post_new_redacao():
             competencia3,
             competencia4,
             competencia5,
-            comentario
+            comentario,
+            nome_redacao
         )
         VALUES (
             %s, %s, %s, %s, %s,
-            %s, %s, %s, %s, %s, %s
+            %s, %s, %s, %s, %s, %s, %s
         )
         """,
         (
@@ -129,7 +142,8 @@ def post_new_redacao():
             data["correcao"]["competencia_3"],
             data["correcao"]["competencia_4"],
             data["correcao"]["competencia_5"],
-            data["correcao"]["comentario"]
+            data["correcao"]["comentario"],
+            data["nome_redacao"]
         )
     )
 

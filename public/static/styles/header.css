@@ -45,9 +45,6 @@ header > div button:first-child:hover {
   background: #eff6ff;
 }
 
-/* --- RESPONSIVIDADE DO HEADER --- */
-
-/* Tablets */
 @media (max-width: 768px) {
   header {
     padding: 10px 20px;

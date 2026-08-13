@@ -20,7 +20,6 @@ button {
   text-align: center;
 }
 
-/* Efeito Hover apenas para dispositivos com ponteiro fino (mouse) */
 @media (hover: hover) {
   button:hover {
     background: var(--button-color-hover);
@@ -33,13 +32,10 @@ button:active {
   transform: translateY(0);
 }
 
-/* --- RESPONSIVIDADE DOS BOTÕES --- */
-
-/* Ajustes para Celulares */
 @media (max-width: 480px) {
   button {
     padding: 10px 16px;
     font-size: 14px;
-    min-height: 40px; /* Garante área fácil de tocar no mobile */
+    min-height: 40px;
   }
 }
