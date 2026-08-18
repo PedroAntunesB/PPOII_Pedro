@@ -2,24 +2,8 @@ import addItemDiv from "./add-item-historico.js";
 import postRedacao from "./add-redacao.js";
 import criarElemento from "./criarElemento.js";
 import getHistorico from "./get-historico.js";
-export default async function corrigirRedacao(texto, tema, nome) {
-  const response = await fetch(
-    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}&nome=${encodeURIComponent(nome)}`,
-  );
 
-  const data = await response.json();
-
-  if (!data.success) {
-    const modal = document.getElementById("modal");
-    modal.querySelector("p").textContent = data.message;
-    modal.showModal();
-    return;
-  }
-
-  const correcao = data.correcao;
-
-  await postRedacao(data);
-
+export function chatArea(correcao, data) {
   document.querySelector(".chat-area").style.display = "flex";
 
   const chatResposta = document.querySelector(".chat-resposta");
@@ -74,6 +58,27 @@ export default async function corrigirRedacao(texto, tema, nome) {
   chatResposta.appendChild(competencias);
   chatResposta.appendChild(comentario);
   chatResposta.appendChild(textoCorrigido);
+}
+
+export default async function corrigirRedacao(texto, tema, nome) {
+  const response = await fetch(
+    `/corrigir-redacao?redacao=${encodeURIComponent(texto)}&tema=${encodeURIComponent(tema)}&nome=${encodeURIComponent(nome)}`,
+  );
+
+  const data = await response.json();
+
+  if (!data.success) {
+    const modal = document.getElementById("modal");
+    modal.querySelector("p").textContent = data.message;
+    modal.showModal();
+    return;
+  }
+
+  const correcao = data.correcao;
+
+  await postRedacao(data);
+
+  chatArea(correcao, data);
 
   document.querySelector(".button-submit").style.display = "none";
   document.querySelector(".button-refazer").style.display = "block";

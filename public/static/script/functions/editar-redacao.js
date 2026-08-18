@@ -1,3 +1,5 @@
+import { chatArea } from "./corrigir-redacao.js";
+
 export default async function renderizarAreaEdicao(id) {
   const userArea = document.querySelector(".user-area");
 
@@ -22,9 +24,18 @@ export default async function renderizarAreaEdicao(id) {
     // Preenche os campos
     inputNome.value = data["redacao"].nome_redacao;
     textarea.value = data["redacao"].user_text;
+    console.log();
+    chatArea(data["redacao"].correcao, data["redacao"]);
 
     // Seleciona o tema
     selectTema.value = data["redacao"].tema;
+
+    if (
+      document.querySelector(".button-submit").style.display === "none" ||
+      document.querySelector(".botao") != undefined
+    ) {
+      return;
+    }
 
     // Container dos botões
     const botoesEdicao = document.createElement("div");
