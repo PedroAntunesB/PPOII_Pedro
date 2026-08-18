@@ -82,7 +82,7 @@ def get_old_redacoes():
     user_id = current_user.id
 
     cursor.execute(
-        "SELECT tema, nome_redacao FROM chats WHERE user_id = %s",
+        "SELECT tema, nome_redacao, id FROM chats WHERE user_id = %s",
         (user_id, )
     )
 
@@ -95,7 +95,7 @@ def get_old_redacoes():
         return jsonify({
             "success": False,
             "message": "Usuário não possui redações"
-        }), 404
+        }), 200
 
     return jsonify({
         "success": True,
@@ -155,4 +155,31 @@ def post_new_redacao():
     return jsonify({
         "success": True,
         "message": "Redação salva com sucesso."
+    }), 201
+
+@redacao_routes.route("/delete-redacao", methods=["DELETE"])
+@login_required
+def delete_redacao():
+    id = current_user.id
+    data = request.get_json()
+    redacao_id = int(data["id"])
+
+    if not redacao_id: 
+        return jsonify({
+            "success": False,
+            "message": "ID invalido"
+        }), 404
+    
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM chats WHERE user_id=%s AND id=%s;", (id, redacao_id, ))
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "message": "Redação excluida com sucesso"
     }), 201

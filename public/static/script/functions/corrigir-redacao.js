@@ -18,7 +18,7 @@ export default async function corrigirRedacao(texto, tema, nome) {
 
   const correcao = data.correcao;
 
-  postRedacao(data);
+  await postRedacao(data);
 
   document.querySelector(".chat-area").style.display = "flex";
 
