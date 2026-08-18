@@ -1,4 +1,4 @@
-export async function postRedacao(redacao) {
+export default async function postRedacao(redacao) {
   await fetch("/post-redacao", {
     method: "POST",
     headers: {

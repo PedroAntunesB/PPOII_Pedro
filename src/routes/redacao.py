@@ -107,9 +107,9 @@ def get_old_redacoes():
 def post_new_redacao():
 
     data = request.get_json()
+    print(data)
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute(
         """
         INSERT INTO chats (

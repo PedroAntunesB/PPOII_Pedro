@@ -1,5 +1,5 @@
 import addItemDiv from "./add-item-historico.js";
-import { postRedacao } from "./add-redacao.js";
+import postRedacao from "./add-redacao.js";
 import criarElemento from "./criarElemento.js";
 import getHistorico from "./get-historico.js";
 export default async function corrigirRedacao(texto, tema, nome) {
