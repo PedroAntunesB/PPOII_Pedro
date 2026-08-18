@@ -1,3 +1,5 @@
+import renderizarAreaEdicao from "./editar-redacao.js";
+
 export default function addItemDiv(redacao, historicoDiv) {
   const item = document.createElement("div");
   item.classList.add("historico-item");
@@ -18,6 +20,7 @@ export default function addItemDiv(redacao, historicoDiv) {
   const botaoAbrir = document.createElement("button");
   botaoAbrir.classList.add("botao-abrir");
   botaoAbrir.textContent = "Abrir";
+  botaoAbrir.addEventListener("click", () => renderizarAreaEdicao(item.id));
 
   const botaoDeletar = document.createElement("button");
   botaoDeletar.appendChild(document.createElement("img"));
@@ -44,6 +47,8 @@ export default function addItemDiv(redacao, historicoDiv) {
     if (historicoDiv.children.length < 4) {
       document.querySelector(".historico-link").style.display = "none";
     }
+
+    location.reload();
   });
 
   botoes.appendChild(botaoAbrir);

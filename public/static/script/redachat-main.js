@@ -5,6 +5,7 @@ const texto = document.querySelector("textarea");
 texto.value = "";
 const select = document.querySelector("select");
 const nome = document.querySelector(".nome-redacao");
+nome.value = "";
 
 document.querySelector(".button-submit").addEventListener("click", () => {
   const tema = select.options[select.selectedIndex];

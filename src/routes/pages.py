@@ -22,3 +22,7 @@ def create_account_page():
 def logout():
     logout_user()
     return redirect("/")
+
+@app_pages.route("/teste")
+def teste():
+    return render_template("teste.html")

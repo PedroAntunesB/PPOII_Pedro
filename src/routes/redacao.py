@@ -183,3 +183,66 @@ def delete_redacao():
         "success": True,
         "message": "Redação excluida com sucesso"
     }), 201
+
+@redacao_routes.route("/get-redacao")
+@login_required
+def get_redacao():
+
+    data = request.args.get("id")
+
+    if not data:
+        return jsonify({
+            "success": False,
+            "message": "Dados incorretos."
+        }), 422
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        SELECT *
+        FROM chats
+        WHERE id = %s AND user_id = %s
+        """,
+        (data, current_user.id)
+    )
+
+    redacao = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    if not redacao:
+        return jsonify({
+            "success": False,
+            "message": "Redação não encontrada."
+        }), 404
+
+    return jsonify({
+        "success": True,
+        "redacao": {
+        "id": redacao[0],
+
+        "nome_redacao": redacao[13],
+
+        "tema": redacao[5],
+
+        "user_text": redacao[2],
+
+        "data_criacao": redacao[4],
+
+        "correcao": {
+            "nota": redacao[6],
+
+            "competencia_1": redacao[7],
+            "competencia_2": redacao[8],
+            "competencia_3": redacao[9],
+            "competencia_4": redacao[10],
+            "competencia_5": redacao[11],
+
+            "comentario": redacao[12],
+
+            "texto_corrigido": redacao[3]
+        }}
+    }), 200

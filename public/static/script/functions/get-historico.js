@@ -8,7 +8,6 @@ export default async function getHistorico() {
 
   const historico = (await response.json()).historico;
   const historicoDiv = document.querySelector(".historico");
-  console.log(historico);
   if (!historicoDiv || historico === undefined) {
     return;
   }
