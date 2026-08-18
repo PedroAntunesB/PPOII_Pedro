@@ -13,7 +13,6 @@ export default async function getHistorico() {
   }
 
   historicoDiv.innerHTML = "";
-
   if (historico.length === 0) {
     const mensagem = document.createElement("div");
     mensagem.classList.add("login-message");
@@ -38,6 +37,22 @@ export default async function getHistorico() {
 
   if (historico.length >= 4) {
     document.querySelector("aside").style.height = "fit-content";
-    document.querySelector(".historico-link").style.display = "block";
+    const btnShow = document.createElement("button");
+    btnShow.classList.add("historico-link");
+    btnShow.style.display = "block";
+    btnShow.textContent = "Ver todo o historico";
+    historicoDiv.appendChild(btnShow);
+    btnShow.addEventListener("click", async () => {
+      const response = await fetch("/get-all");
+      if (response.success) {
+        return;
+      }
+      const allHistorico = (await response.json()).historico;
+      historicoDiv.innerHTML = "";
+      allHistorico.forEach((redacao) => {
+        addItemDiv(redacao, historicoDiv);
+      });
+      btnShow.style.display = "none";
+    });
   }
 }

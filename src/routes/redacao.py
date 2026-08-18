@@ -74,6 +74,35 @@ def enviar_corrigir_redacao():
 
     return response
 
+@redacao_routes.route("/get-all")
+@login_required
+def get_all_redacoes():
+    conn = get_connection()
+    cursor = conn.cursor()
+    user_id = current_user.id
+
+    cursor.execute(
+        "SELECT tema, nome_redacao, id FROM chats WHERE user_id = %s",
+        (user_id, )
+    )
+
+    historico_redacoes = cursor.fetchall()
+
+    conn.close()
+    cursor.close()
+
+    if not historico_redacoes: 
+        return jsonify({
+            "success": False,
+            "message": "Usuário não possui redações"
+        }), 200
+
+    return jsonify({
+        "success": True,
+        "historico": historico_redacoes
+    }), 200
+
+
 @redacao_routes.route("/get-redacoes")
 @login_required
 def get_old_redacoes():
