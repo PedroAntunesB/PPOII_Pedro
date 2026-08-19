@@ -44,8 +44,9 @@ export default function addItemDiv(redacao, historicoDiv) {
       `;
     }
 
-    if (historicoDiv.children.length < 4) {
-      document.querySelector(".historico-link").style.display = "none";
+    const buttonHIstorico = document.querySelector(".historico-link");
+    if (historicoDiv.children.length < 4 || !buttonHIstorico) {
+      historicoDiv.removeChild(document.querySelector(".historico-link"));
     }
 
     location.reload();

@@ -1,5 +1,7 @@
-import { cancelarEdicao } from "./cancelar-edicao.js";
+import cancelarEdicao from "./cancelar-edicao.js";
 import { chatArea } from "./corrigir-redacao.js";
+import getHistorico from "./get-historico.js";
+import refazerRedacao from "./refazer-redacao.js";
 
 export default async function renderizarAreaEdicao(id) {
   const userArea = document.querySelector(".user-area");
@@ -79,7 +81,12 @@ export default async function renderizarAreaEdicao(id) {
         },
         body: JSON.stringify(dados),
       });
+      await getHistorico();
+      cancelarEdicao();
     });
+
+    const buttonRefazer = document.createElement("button");
+    botoesEdicao.appendChild(buttonRefazer);
 
     const botaoCancelar = document.createElement("button");
     botaoCancelar.textContent = "Cancelar";
@@ -93,10 +100,9 @@ export default async function renderizarAreaEdicao(id) {
 
     userArea.appendChild(botoesEdicao);
     document.querySelector(".button-submit").style.display = "none";
-    const buttonRefazer = document.createElement("button");
     buttonRefazer.classList.add("button-refazer");
     buttonRefazer.textContent = "Refazer Analise";
-    botoesEdicao.appendChild(buttonRefazer);
+    buttonRefazer.addEventListener("click", refazerRedacao);
   } catch (error) {
     console.error("Erro ao carregar redação:", error);
   }

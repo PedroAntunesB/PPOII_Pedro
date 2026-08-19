@@ -2,6 +2,8 @@ import addItemDiv from "./add-item-historico.js";
 import postRedacao from "./add-redacao.js";
 import criarElemento from "./criarElemento.js";
 import getHistorico from "./get-historico.js";
+import refazerRedacao from "./refazer-redacao.js";
+import cancelarEdicao from "./cancelar-edicao.js";
 
 export function chatArea(correcao, data) {
   document.querySelector(".chat-area").style.display = "flex";
@@ -81,7 +83,22 @@ export default async function corrigirRedacao(texto, tema, nome) {
   chatArea(correcao, data);
 
   document.querySelector(".button-submit").style.display = "none";
-  document.querySelector(".button-refazer").style.display = "block";
 
+  const buttonRefazer = document.createElement("button");
+  buttonRefazer.classList.add("button-refazer");
+  buttonRefazer.textContent = "Refazer Analise";
+  buttonRefazer.addEventListener("click", refazerRedacao);
+
+  const botaoCancelar = document.createElement("button");
+  botaoCancelar.textContent = "Cancelar";
+  botaoCancelar.classList.add("botao-cancelar");
+  botaoCancelar.addEventListener("click", () => {
+    cancelarEdicao();
+  });
+
+  const userArea = document.querySelector(".user-area");
+
+  userArea.appendChild(buttonRefazer);
+  userArea.appendChild(botaoCancelar);
   await getHistorico();
 }

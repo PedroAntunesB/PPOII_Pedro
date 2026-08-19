@@ -1,4 +1,4 @@
-export function cancelarEdicao() {
+export default function cancelarEdicao() {
   const userArea = document.querySelector(".user-area");
 
   if (!userArea) {
