@@ -210,10 +210,6 @@ textarea {
   line-height: 1.6;
 }
 
-.button-refazer {
-  display: none;
-}
-
 .historico {
   display: flex;
   flex-direction: column;

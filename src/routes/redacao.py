@@ -275,3 +275,68 @@ def get_redacao():
             "texto_corrigido": redacao[3]
         }}
     }), 200
+
+@redacao_routes.route("/editar-redacao", methods=["PUT"])
+@login_required
+def editar_redacao():
+
+    data = request.get_json()
+
+    print(data)
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        UPDATE chats
+        SET
+            texto_user = %s,
+            texto_llm = %s,
+            tema = %s,
+            nota = %s,
+            competencia1 = %s,
+            competencia2 = %s,
+            competencia3 = %s,
+            competencia4 = %s,
+            competencia5 = %s,
+            comentario = %s,
+            nome_redacao = %s
+        WHERE id = %s
+          AND user_id = %s
+        """,
+        (
+            data["user_text"],
+            data["correcao"]["texto_corrigido"],
+            data["tema"],
+            data["correcao"]["nota"],
+            data["correcao"]["competencia_1"],
+            data["correcao"]["competencia_2"],
+            data["correcao"]["competencia_3"],
+            data["correcao"]["competencia_4"],
+            data["correcao"]["competencia_5"],
+            data["correcao"]["comentario"],
+            data["nome_redacao"],
+            data["id"],
+            current_user.id
+        )
+    )
+
+    if cursor.rowcount == 0:
+        cursor.close()
+        conn.close()
+
+        return jsonify({
+            "success": False,
+            "message": "Redação não encontrada."
+        }), 404
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "message": "Redação atualizada com sucesso."
+    }), 200
