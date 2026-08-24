@@ -97,8 +97,10 @@ export default async function corrigirRedacao(texto, tema, nome) {
   });
 
   const userArea = document.querySelector(".user-area");
-
-  userArea.appendChild(buttonRefazer);
-  userArea.appendChild(botaoCancelar);
+  const botoes = document.querySelector(".botoes");
+  botoes.innerHTML = "";
+  botoes.appendChild(buttonRefazer);
+  botoes.appendChild(botaoCancelar);
+  userArea.appendChild(botoes);
   await getHistorico();
 }

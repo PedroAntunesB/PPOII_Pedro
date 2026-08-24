@@ -4,20 +4,20 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import time
 
-load_dotenv()
-
-api_key = os.getenv("API_IA_OPENROUTER")
-
-if not api_key:
-    raise RuntimeError("ERRO.")
-
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=api_key
-)
 
 
 def corrigir_redacao(texto: str, tema: str) -> dict:
+    load_dotenv()
+
+    api_key = os.getenv("API_IA_OPENROUTER_1")
+
+    if not api_key:
+        raise RuntimeError("ERRO.")
+
+    client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=api_key
+    )
     start_time = time.time()
     print("Corrigindo...")
     prompt = f"""

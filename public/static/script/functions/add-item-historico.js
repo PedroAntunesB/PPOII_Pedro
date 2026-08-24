@@ -46,7 +46,11 @@ export default function addItemDiv(redacao, historicoDiv) {
 
     const buttonHIstorico = document.querySelector(".historico-link");
     if (historicoDiv.children.length < 4 || !buttonHIstorico) {
-      historicoDiv.removeChild(document.querySelector(".historico-link"));
+      historicoDiv.removeChild(
+        document.querySelector(".historico-link")
+          ? document.querySelector(".historico-link")
+          : null,
+      );
     }
 
     location.reload();

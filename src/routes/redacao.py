@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from ..auth.database import get_connection
 from ..auth.User import User
 from flask_login import login_required, current_user
-from ..ai.ai import corrigir_redacao
+from ..ai.ai2 import corrigir_redacao
 
 redacao_routes = Blueprint("redacao", __name__)
 
@@ -31,15 +31,13 @@ def enviar_corrigir_redacao():
             "success": False,
             "message": "Nenhuma redação foi enviada."
         }), 422
-
-    
     
     try:
 
         resultado = corrigir_redacao(
-            texto=redacao,
-            tema=tema
-        )
+           texto=redacao,
+           tema=tema
+       )
 
         return jsonify({
             "success": True,

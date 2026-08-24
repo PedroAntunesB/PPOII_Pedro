@@ -38,8 +38,6 @@ export default async function refazerRedacao() {
     }
 
     chatArea(data.correcao, data);
-
-    console.log("feito");
   } catch (error) {
     console.error("Erro ao refazer análise:", error);
   }

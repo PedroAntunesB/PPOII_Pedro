@@ -26,21 +26,12 @@ export default async function renderizarAreaEdicao(id) {
 
     inputNome.value = data["redacao"].nome_redacao;
     textarea.value = data["redacao"].user_text;
-    console.log();
     chatArea(data["redacao"].correcao, data["redacao"]);
 
     selectTema.value = data["redacao"].tema;
 
-    if (
-      document.querySelector(".button-submit").style.display === "none" ||
-      document.querySelector(".botao") != undefined
-    ) {
-      return;
-    }
-
-    const botoesEdicao = document.createElement("div");
-    botoesEdicao.classList.add("botoes-edicao");
-
+    const botoesEdicao = document.querySelector(".botoes");
+    botoesEdicao.innerHTML = "";
     const botaoSalvar = document.createElement("button");
     botaoSalvar.textContent = "Salvar alterações";
     botaoSalvar.classList.add("botao-salvar");
@@ -74,7 +65,7 @@ export default async function renderizarAreaEdicao(id) {
         },
       };
 
-      const response = await fetch("/editar-redacao", {
+      await fetch("/editar-redacao", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -96,10 +87,10 @@ export default async function renderizarAreaEdicao(id) {
     });
 
     botoesEdicao.appendChild(botaoSalvar);
+    console.log("botão salvar");
     botoesEdicao.appendChild(botaoCancelar);
 
     userArea.appendChild(botoesEdicao);
-    document.querySelector(".button-submit").style.display = "none";
     buttonRefazer.classList.add("button-refazer");
     buttonRefazer.textContent = "Refazer Analise";
     buttonRefazer.addEventListener("click", refazerRedacao);
