@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from ..auth.database import get_connection
 from ..auth.User import User
 from flask_login import login_required, current_user
-from ..ai.ai2 import corrigir_redacao
+from ..ai.ai import corrigir_redacao
 
 redacao_routes = Blueprint("redacao", __name__)
 

@@ -1,22 +1,54 @@
 <!doctype html>
-
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redachat - 405</title>
-    <link rel="stylesheet" href="../static/styles/400-style.css" />
+    <title>Método não permitido — RedaChat</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/errors.css" />
   </head>
-
   <body>
-    <main class="error-page">
-      <div class="error-content">
-        <span class="error-code">405</span>
-        <h1>Método Não Autorizado</h1>
-        <p>Não foi possivel acessar este metodo.</p>
-        <a href="/" class="home-button"> Voltar para o início </a>
+    <div class="error-shell">
+      <div class="card error-card">
+        <div class="brandmark">
+          <svg
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="32" height="32" rx="9" fill="#4F8EF2" />
+            <path
+              d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12"
+              stroke="#0B1A33"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M14.5 17.5 21 24"
+              stroke="#0B1A33"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span>Reda<em>Chat</em></span>
+        </div>
+
+        <p class="error-code">ERRO 405</p>
+        <img
+          src="https://http.cat/405"
+          alt="Erro 405 - Método Não Autorizado"
+        />
+
+        <h1>Esse caminho não aceita essa ação.</h1>
+        <p>
+          O método usado para chegar aqui não é permitido para esta página.
+          Volte e tente novamente.
+        </p>
+
+        <div class="error-actions">
+          <a href="/" class="btn btn-primary">Voltar para o início</a>
+        </div>
       </div>
-      <img src="https://http.cat/405" alt="Erro 405 - Método Não Autorizado" />
-    </main>
+    </div>
   </body>
 </html>

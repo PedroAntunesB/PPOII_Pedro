@@ -1,106 +1,109 @@
-# Correção usando a API do Gemini
+# Correcão usando a API do OpenRouter.
 import os
-import time
+from openai import OpenAI
 from dotenv import load_dotenv
-from google import genai
-from google.genai import types
-from pydantic import BaseModel, Field
-
-load_dotenv()
-
-api_key = os.getenv("API_IA")
-
-if not api_key:
-    raise RuntimeError("ERRO: A variável API_IA não foi encontrada.")
-
-client = genai.Client(
-    api_key=api_key
-)
-
-class CorrecaoRedacao(BaseModel):
-    nota: int = Field(ge=0, le=1000)
-
-    competencia_1: int = Field(ge=0, le=200)
-    competencia_2: int = Field(ge=0, le=200)
-    competencia_3: int = Field(ge=0, le=200)
-    competencia_4: int = Field(ge=0, le=200)
-    competencia_5: int = Field(ge=0, le=200)
-
-    comentario: str
-    texto_corrigido: str
-
-
+import time
+    
 def corrigir_redacao(texto: str, tema: str) -> dict:
+    load_dotenv()
+
+    api_key = os.getenv("API_IA_OPENROUTER_1")
+    model=os.getenv("MODEL")
+    if not api_key:
+        raise RuntimeError("ERRO.")
+
+    client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=api_key
+    )
     start_time = time.time()
-
     print("Corrigindo...")
-
     prompt = f"""
-            Você é um corretor especializado em redações do ENEM.
+        Você é um corretor especializado em redações do ENEM.
 
-            Analise a redação considerando as cinco competências oficiais da redação do ENEM.
+        Analise a redação considerando as cinco competências oficiais da redação do ENEM.
 
-            Tema:
-            {tema}
+        Tema:
+        {tema}
 
-            Redação:
-            {texto}
+        Redação:
+        {texto}
 
-            Critérios:
+        Critérios:
 
-            Competência 1:
-            Domínio da modalidade escrita formal da língua portuguesa.
+        Competência 1:
+        Domínio da modalidade escrita formal da língua portuguesa.
 
-            Competência 2:
-            Compreensão da proposta de redação e desenvolvimento do tema dentro dos limites estruturais do texto dissertativo-argumentativo.
+        Competência 2:
+        Compreensão da proposta de redação e desenvolvimento do tema dentro dos limites estruturais do texto dissertativo-argumentativo.
 
-            Competência 3:
-            Seleção, relação, organização e interpretação de informações, fatos, opiniões e argumentos.
+        Competência 3:
+        Seleção, relação, organização e interpretação de informações, fatos, opiniões e argumentos.
 
-            Competência 4:
-            Conhecimento dos mecanismos linguísticos necessários para a construção da argumentação.
+        Competência 4:
+        Conhecimento dos mecanismos linguísticos necessários para a construção da argumentação.
 
-            Competência 5:
-            Elaboração de proposta de intervenção para o problema abordado, respeitando os direitos humanos.
+        Competência 5:
+        Elaboração de proposta de intervenção para o problema abordado, respeitando os direitos humanos.
 
-            REGRAS DE NOTAS:
+        Cada competência deve receber uma nota múltipla de 40, entre 0 e 200.
 
-            - Cada competência deve receber uma nota múltipla de 40.
-            - Cada competência deve ter um valor entre 0 e 200.
-            - A nota final deve ser a soma das cinco competências.
-            - A nota final deve ser igual à soma de competencia_1, competencia_2,
-              competencia_3, competencia_4 e competencia_5.
+        A nota final deve ser a soma das cinco competências.
 
-            REGRAS DA CORREÇÃO:
+        O comentário deve explicar de forma objetiva os pontos fortes e os pontos que precisam ser melhorados.
 
-            - O comentário deve explicar objetivamente os pontos fortes e os pontos
-              que precisam ser melhorados.
-            - O texto corrigido deve preservar as ideias originais do aluno.
-            - Corrija problemas de gramática, coesão, clareza e construção textual.
-            - Não invente informações sobre a redação.
-            - Retorne obrigatoriamente todos os campos do formato solicitado.
-            - Seja o mais rigoroso possivel sem comprometer as outras regras de correção
-        """
+        O texto corrigido deve preservar as ideias originais do aluno, corrigindo problemas de gramática, coesão, clareza e construção textual.
 
-    response = client.models.generate_content(
-        model="gemini-3.6-flash", # Deu as melhores respostas até agora!
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            temperature=0.1,
-            response_mime_type="application/json",
-            response_schema=CorrecaoRedacao,
-        ),
+        Não invente informações sobre a redação.
+    """
+
+    response = client.chat.completions.create(
+    model=model, 
+    messages=[
+        {
+            "role": "user",
+            "content": prompt
+        }
+    ],
+    temperature=0.1,
+    response_format={
+        "type": "json_schema",
+        "json_schema": {
+            "name": "correcao_redacao",
+            "strict": True,
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "nota": {"type": "integer"},
+                    "competencia_1": {"type": "integer"},
+                    "competencia_2": {"type": "integer"},
+                    "competencia_3": {"type": "integer"},
+                    "competencia_4": {"type": "integer"},
+                    "competencia_5": {"type": "integer"},
+                    "comentario": {"type": "string"},
+                    "texto_corrigido": {"type": "string"}
+                },
+                "required": [
+                    "nota",
+                    "competencia_1",
+                    "competencia_2",
+                    "competencia_3",
+                    "competencia_4",
+                    "competencia_5",
+                    "comentario",
+                    "texto_corrigido"
+                ],
+                "additionalProperties": False
+                }
+            }
+        }
     )
 
-    if not response.text:
+    conteudo = response.choices[0].message.content
+
+    if not conteudo:
         raise RuntimeError("O modelo não retornou uma resposta.")
-
-    resultado = CorrecaoRedacao.model_validate_json(
-        response.text
-    )
-
     execution_time = time.time() - start_time
-
-    print(f"--- {execution_time:.2f} segundos ---")
-
-    return resultado.model_dump()
+    print("--- %s segundos ---" % execution_time)
+    import json
+    return json.loads(conteudo)

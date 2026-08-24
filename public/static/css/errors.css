@@ -1,0 +1,63 @@
+/* =========================================================
+   RedaChat — páginas de erro
+   ========================================================= */
+
+.error-shell{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.error-shell::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 340px at 50% 0%, rgba(79, 142, 242,0.14), transparent 65%);
+  pointer-events: none;
+}
+
+.error-card{
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  padding: 46px 40px 40px;
+}
+
+.error-card .brandmark{ justify-content: center; margin-bottom: 30px; }
+
+.error-code{
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .1em;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+
+.error-stamp{
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.error-stamp svg{ width: 38px; height: 38px; }
+
+.error-card h1{ font-size: 24px; margin-bottom: 10px; }
+.error-card p{ color: var(--text-dim); font-size: 14.5px; line-height: 1.65; max-width: 38ch; margin: 0 auto; }
+
+.error-actions{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
