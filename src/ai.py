@@ -95,7 +95,6 @@ def corrigir_redacao(texto: str, tema: str) -> dict:
     if not response.text:
         raise RuntimeError("O modelo não retornou uma resposta.")
 
-    # Converte e valida o JSON usando o schema Pydantic
     resultado = CorrecaoRedacao.model_validate_json(
         response.text
     )
@@ -104,5 +103,4 @@ def corrigir_redacao(texto: str, tema: str) -> dict:
 
     print(f"--- {execution_time:.2f} segundos ---")
 
-    # Retorna como dict normal do Python
     return resultado.model_dump()
