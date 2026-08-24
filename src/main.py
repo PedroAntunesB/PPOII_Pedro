@@ -1,7 +1,7 @@
 from flask import Flask
 from dotenv import load_dotenv
 import os
-from .LoginManager import login_manager
+from .auth.LoginManager import login_manager
 from .routes import pages, redacao, auth
 from src.errors.register_erros import register_error_handlers
 

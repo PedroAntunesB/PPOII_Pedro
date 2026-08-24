@@ -1,5 +1,6 @@
-from flask import render_template, Blueprint, redirect
+from flask import render_template, Blueprint, redirect, jsonify
 from flask_login import current_user, login_required, logout_user
+
 
 app_pages = Blueprint("pages", __name__)
 
@@ -26,3 +27,7 @@ def logout():
 @app_pages.route("/teste")
 def teste():
     return render_template("teste.html")
+
+@app_pages.route("/gustavo")
+def gusta():
+    return render_template("errors-page/page420.html")
