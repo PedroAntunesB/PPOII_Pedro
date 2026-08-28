@@ -1,74 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entrar — RedaChat</title>
-<link rel="stylesheet" href="/static/css/base.css">
-<link rel="stylesheet" href="/static/css/auth.css">
-</head>
-<body>
-
-<div class="auth-shell">
-  <aside class="auth-side">
-    <div class="quote-block">
-      <p class="eyebrow">Bem-vindo de volta</p>
-      <h2>Continue de onde parou na sua <em>preparação</em> para o ENEM.</h2>
-    </div>
-
-    <div class="mini-ficha paper">
-      <div class="row1">
-        <span class="lbl">COMPETÊNCIA 3</span>
-        <span class="val">160/200</span>
-      </div>
-      <div class="bars">
-        <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i>
-      </div>
-    </div>
-
-    <p class="footnote">HISTÓRICO, CORREÇÃO E EVOLUÇÃO EM UM SÓ LUGAR</p>
-  </aside>
-
-  <main class="auth-main">
-    <div class="auth-form-wrap">
-      <a href="/" class="back-home">← Voltar para a página inicial</a>
-      <div class="brandmark">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="32" rx="9" fill="#4F8EF2"/>
-          <path d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-          <path d="M14.5 17.5 21 24" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span>Reda<em>Chat</em></span>
-      </div>
-
-      <h1>Entrar na sua conta</h1>
-      <p class="sub">Informe seus dados para acessar suas redações.</p>
-
-      <form id="login-form" class="auth-form" novalidate>
-        <div class="field" data-field="email">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="voce@email.com" autocomplete="email" required>
-          <span class="error-text"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar — RedaChat</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/owl.svg') }}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/auth.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <aside class="auth-side">
+        <div class="quote-block">
+          <p class="eyebrow">Bem-vindo de volta</p>
+          <h2>
+            Continue de onde parou na sua <em>preparação</em> para o ENEM.
+          </h2>
         </div>
 
-        <div class="field" data-field="senha">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" placeholder="Sua senha" autocomplete="current-password" required>
-          <span class="error-text"></span>
+        <div class="mini-ficha paper">
+          <div class="row1">
+            <span class="lbl">COMPETÊNCIA 3</span>
+            <span class="val">160/200</span>
+          </div>
+          <div class="bars">
+            <i class="filled"></i><i class="filled"></i><i class="filled"></i
+            ><i class="filled"></i><i></i>
+          </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">
-          <span class="spinner"></span>
-          <span class="btn-label">Entrar</span>
-        </button>
-      </form>
+        <p class="footnote">HISTÓRICO, CORREÇÃO E EVOLUÇÃO EM UM SÓ LUGAR</p>
+      </aside>
 
-      <p class="auth-switch">Ainda não tem conta? <a href="/criar-conta">Criar conta grátis</a></p>
+      <main class="auth-main">
+        <div class="auth-form-wrap">
+          <a href="/" class="back-home">← Voltar para a página inicial</a>
+          <div class="brandmark">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="32" height="32" rx="9" fill="#4F8EF2" />
+              <path
+                d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12"
+                stroke="#0B1A33"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M14.5 17.5 21 24"
+                stroke="#0B1A33"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>Reda<em>Chat</em></span>
+          </div>
+
+          <h1>Entrar na sua conta</h1>
+          <p class="sub">Informe seus dados para acessar suas redações.</p>
+
+          <form id="login-form" class="auth-form" novalidate>
+            <div class="field" data-field="email">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="voce@email.com"
+                autocomplete="email"
+                required
+              />
+              <span class="error-text"></span>
+            </div>
+
+            <div class="field" data-field="senha">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Sua senha"
+                autocomplete="current-password"
+                required
+              />
+              <span class="error-text"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <span class="spinner"></span>
+              <span class="btn-label">Entrar</span>
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Ainda não tem conta? <a href="/criar-conta">Criar conta grátis</a>
+          </p>
+        </div>
+      </main>
     </div>
-  </main>
-</div>
 
-<script src="/static/js/api.js"></script>
-<script src="/static/js/auth.js"></script>
-</body>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/auth.js"></script>
+  </body>
 </html>

@@ -1,190 +1,255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RedaChat — Correção de redação do ENEM com IA</title>
-<meta name="description" content="Escreva sua redação, envie para correção e receba nota, competências e comentários em minutos.">
-<link rel="stylesheet" href="/static/css/base.css">
-<link rel="stylesheet" href="/static/css/landing.css">
-</head>
-<body>
-
-<header class="site-nav">
-  <div class="wrap spread">
-    <a class="brandmark" href="/">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="9" fill="#4F8EF2"/>
-        <path d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-        <path d="M14.5 17.5 21 24" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>Reda<em>Chat</em></span>
-    </a>
-    <nav class="nav-links">
-      <a class="btn btn-ghost btn-sm" href="/login-page">Entrar</a>
-      <a class="btn btn-primary btn-sm" href="/criar-conta">Criar conta grátis</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero wrap">
-    <div>
-      <p class="eyebrow">Correção de redação · ENEM</p>
-      <h1>Sua redação corrigida como se um <em>professor</em> tivesse acabado de devolver.</h1>
-      <p class="lede">
-        Escreva o texto, escolha o tema e receba nota, as cinco competências
-        do ENEM e uma versão corrigida — analisada por inteligência artificial
-        em poucos minutos.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="/criar-conta">Corrigir minha primeira redação</a>
-        <a class="btn btn-ghost" href="/login-page">Já tenho conta</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RedaChat — Correção de redação do ENEM com IA</title>
+    <meta
+      name="description"
+      content="Escreva sua redação, envie para correção e receba nota, competências e comentários em minutos."
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/owl.svg') }}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/landing.css" />
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="wrap spread">
+        <a class="brandmark" href="/">
+          <svg
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="32" height="32" rx="9" fill="#4F8EF2" />
+            <path
+              d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12"
+              stroke="#0B1A33"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M14.5 17.5 21 24"
+              stroke="#0B1A33"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span>Reda<em>Chat</em></span>
+        </a>
+        <nav class="nav-links">
+          <a class="btn btn-ghost btn-sm" href="/login-page">Entrar</a>
+          <a class="btn btn-primary btn-sm" href="/criar-conta"
+            >Criar conta grátis</a
+          >
+        </nav>
       </div>
-      <p class="micro">GRATUITO PARA COMEÇAR · SEM CARTÃO DE CRÉDITO</p>
-    </div>
+    </header>
 
-    <div class="demo-ficha">
-      <span class="tag-example">Exemplo de correção</span>
-      <div class="paper">
-        <div class="ficha-head">
-          <div>
-            <div class="titulo">Redação · Impactos das redes sociais</div>
-            <div class="tema">Tema: desafios para a saúde mental no ambiente digital</div>
+    <main>
+      <section class="hero wrap">
+        <div>
+          <p class="eyebrow">Correção de redação · ENEM</p>
+          <h1>
+            Sua redação corrigida como se um <em>professor</em> tivesse acabado
+            de devolver.
+          </h1>
+          <p class="lede">
+            Escreva o texto, escolha o tema e receba nota, as cinco competências
+            do ENEM e uma versão corrigida — analisada por inteligência
+            artificial em poucos minutos.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/criar-conta"
+              >Corrigir minha primeira redação</a
+            >
+            <a class="btn btn-ghost" href="/login-page">Já tenho conta</a>
           </div>
-          <div class="ficha-score">840<sub>/1000</sub></div>
+          <p class="micro">GRATUITO PARA COMEÇAR · SEM CARTÃO DE CRÉDITO</p>
         </div>
 
-        <div class="comp-row">
-          <span class="comp-label">Competência 1</span>
-          <div class="comp-meter">
-            <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i>
+        <div class="demo-ficha">
+          <span class="tag-example">Exemplo de correção</span>
+          <div class="paper">
+            <div class="ficha-head">
+              <div>
+                <div class="titulo">Redação · Impactos das redes sociais</div>
+                <div class="tema">
+                  Tema: desafios para a saúde mental no ambiente digital
+                </div>
+              </div>
+              <div class="ficha-score">840<sub>/1000</sub></div>
+            </div>
+
+            <div class="comp-row">
+              <span class="comp-label">Competência 1</span>
+              <div class="comp-meter">
+                <i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i>
+              </div>
+              <span class="comp-val">200</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-label">Competência 2</span>
+              <div class="comp-meter">
+                <i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i><i class="filled"></i><i></i>
+              </div>
+              <span class="comp-val">160</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-label">Competência 3</span>
+              <div class="comp-meter">
+                <i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i><i class="filled"></i><i></i>
+              </div>
+              <span class="comp-val">160</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-label">Competência 4</span>
+              <div class="comp-meter">
+                <i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i>
+              </div>
+              <span class="comp-val">200</span>
+            </div>
+            <div class="comp-row">
+              <span class="comp-label">Competência 5</span>
+              <div class="comp-meter">
+                <i class="filled"></i><i class="filled"></i
+                ><i class="filled"></i><i></i><i></i>
+              </div>
+              <span class="comp-val">120</span>
+            </div>
+
+            <div class="ficha-comentario">
+              <b>Comentário:</b> argumentação consistente e boa proposta de
+              intervenção; revise a conclusão para amarrar melhor os argumentos
+              apresentados.
+            </div>
           </div>
-          <span class="comp-val">200</span>
         </div>
-        <div class="comp-row">
-          <span class="comp-label">Competência 2</span>
-          <div class="comp-meter">
-            <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i>
+      </section>
+
+      <div class="wrap">
+        <div class="trust-strip">
+          <span>MODELO TREINADO NAS 5 COMPETÊNCIAS OFICIAIS</span>
+          <span>HISTÓRICO INDIVIDUAL DE REDAÇÕES</span>
+          <span>CORREÇÃO EM MINUTOS</span>
+          <span>ACESSO PROTEGIDO POR CONTA</span>
+        </div>
+      </div>
+
+      <section class="section wrap" id="como-funciona">
+        <div class="section-head">
+          <p class="eyebrow">Como funciona</p>
+          <h2>Do rascunho à nota, em três passos.</h2>
+          <p>
+            Nenhuma configuração complicada — abra sua conta e comece a
+            escrever.
+          </p>
+        </div>
+        <div class="steps">
+          <div class="card step-card">
+            <div class="step-no">01 — Escreva</div>
+            <h3>Escolha um tema e redija</h3>
+            <p>
+              Dê um nome à redação, selecione o tema e escreva seu texto
+              dissertativo-argumentativo diretamente no editor.
+            </p>
           </div>
-          <span class="comp-val">160</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-label">Competência 3</span>
-          <div class="comp-meter">
-            <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i>
+          <div class="card step-card">
+            <div class="step-no">02 — Envie</div>
+            <h3>Envie para correção</h3>
+            <p>
+              Seu texto é analisado considerando as cinco competências oficiais
+              da redação do ENEM.
+            </p>
           </div>
-          <span class="comp-val">160</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-label">Competência 4</span>
-          <div class="comp-meter">
-            <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i>
+          <div class="card step-card">
+            <div class="step-no">03 — Receba</div>
+            <h3>Veja nota e comentários</h3>
+            <p>
+              Receba a nota geral, a pontuação por competência, comentários e
+              uma versão corrigida do seu texto.
+            </p>
           </div>
-          <span class="comp-val">200</span>
         </div>
-        <div class="comp-row">
-          <span class="comp-label">Competência 5</span>
-          <div class="comp-meter">
-            <i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><i></i>
+      </section>
+
+      <section class="section wrap" id="competencias">
+        <div class="section-head">
+          <p class="eyebrow">As 5 competências do ENEM</p>
+          <h2>A mesma régua usada na correção oficial.</h2>
+          <p>
+            Cada competência vale até 200 pontos, em múltiplos de 40, somando
+            até 1000 pontos.
+          </p>
+        </div>
+        <div class="comp-grid">
+          <div class="card comp-tile">
+            <div class="n">Comp. 1</div>
+            <h4>Norma culta</h4>
+            <p>Domínio da modalidade escrita formal da língua portuguesa.</p>
           </div>
-          <span class="comp-val">120</span>
+          <div class="card comp-tile">
+            <div class="n">Comp. 2</div>
+            <h4>Compreensão do tema</h4>
+            <p>
+              Desenvolvimento do tema dentro da estrutura
+              dissertativo-argumentativa.
+            </p>
+          </div>
+          <div class="card comp-tile">
+            <div class="n">Comp. 3</div>
+            <h4>Argumentação</h4>
+            <p>
+              Seleção e organização de informações, fatos, opiniões e
+              argumentos.
+            </p>
+          </div>
+          <div class="card comp-tile">
+            <div class="n">Comp. 4</div>
+            <h4>Coesão textual</h4>
+            <p>
+              Uso dos mecanismos linguísticos para construção da argumentação.
+            </p>
+          </div>
+          <div class="card comp-tile">
+            <div class="n">Comp. 5</div>
+            <h4>Proposta de intervenção</h4>
+            <p>Elaboração de proposta que respeite os direitos humanos.</p>
+          </div>
         </div>
+      </section>
 
-        <div class="ficha-comentario">
-          <b>Comentário:</b> argumentação consistente e boa proposta de intervenção;
-          revise a conclusão para amarrar melhor os argumentos apresentados.
+      <section class="wrap">
+        <div class="cta-final card">
+          <p class="eyebrow">Comece agora</p>
+          <h2>Sua próxima redação já pode vir com nota.</h2>
+          <p>
+            Crie sua conta gratuita e envie a primeira correção em poucos
+            minutos.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="/criar-conta"
+              >Criar conta grátis</a
+            >
+            <a class="btn btn-ghost" href="/login-page">Entrar</a>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <div class="wrap">
-    <div class="trust-strip">
-      <span>MODELO TREINADO NAS 5 COMPETÊNCIAS OFICIAIS</span>
-      <span>HISTÓRICO INDIVIDUAL DE REDAÇÕES</span>
-      <span>CORREÇÃO EM MINUTOS</span>
-      <span>ACESSO PROTEGIDO POR CONTA</span>
-    </div>
-  </div>
-
-  <section class="section wrap" id="como-funciona">
-    <div class="section-head">
-      <p class="eyebrow">Como funciona</p>
-      <h2>Do rascunho à nota, em três passos.</h2>
-      <p>Nenhuma configuração complicada — abra sua conta e comece a escrever.</p>
-    </div>
-    <div class="steps">
-      <div class="card step-card">
-        <div class="step-no">01 — Escreva</div>
-        <h3>Escolha um tema e redija</h3>
-        <p>Dê um nome à redação, selecione o tema e escreva seu texto dissertativo-argumentativo diretamente no editor.</p>
-      </div>
-      <div class="card step-card">
-        <div class="step-no">02 — Envie</div>
-        <h3>Envie para correção</h3>
-        <p>Seu texto é analisado considerando as cinco competências oficiais da redação do ENEM.</p>
-      </div>
-      <div class="card step-card">
-        <div class="step-no">03 — Receba</div>
-        <h3>Veja nota e comentários</h3>
-        <p>Receba a nota geral, a pontuação por competência, comentários e uma versão corrigida do seu texto.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section wrap" id="competencias">
-    <div class="section-head">
-      <p class="eyebrow">As 5 competências do ENEM</p>
-      <h2>A mesma régua usada na correção oficial.</h2>
-      <p>Cada competência vale até 200 pontos, em múltiplos de 40, somando até 1000 pontos.</p>
-    </div>
-    <div class="comp-grid">
-      <div class="card comp-tile">
-        <div class="n">Comp. 1</div>
-        <h4>Norma culta</h4>
-        <p>Domínio da modalidade escrita formal da língua portuguesa.</p>
-      </div>
-      <div class="card comp-tile">
-        <div class="n">Comp. 2</div>
-        <h4>Compreensão do tema</h4>
-        <p>Desenvolvimento do tema dentro da estrutura dissertativo-argumentativa.</p>
-      </div>
-      <div class="card comp-tile">
-        <div class="n">Comp. 3</div>
-        <h4>Argumentação</h4>
-        <p>Seleção e organização de informações, fatos, opiniões e argumentos.</p>
-      </div>
-      <div class="card comp-tile">
-        <div class="n">Comp. 4</div>
-        <h4>Coesão textual</h4>
-        <p>Uso dos mecanismos linguísticos para construção da argumentação.</p>
-      </div>
-      <div class="card comp-tile">
-        <div class="n">Comp. 5</div>
-        <h4>Proposta de intervenção</h4>
-        <p>Elaboração de proposta que respeite os direitos humanos.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap">
-    <div class="cta-final card">
-      <p class="eyebrow">Comece agora</p>
-      <h2>Sua próxima redação já pode vir com nota.</h2>
-      <p>Crie sua conta gratuita e envie a primeira correção em poucos minutos.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="/criar-conta">Criar conta grátis</a>
-        <a class="btn btn-ghost" href="/login-page">Entrar</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer wrap">
-    <span>© 2026 RedaChat</span>
-    <span>Feito para quem está se preparando para o ENEM.</span>
-  </footer>
-</main>
-
-</body>
+      <footer class="site-footer wrap">
+        <span>© 2026 RedaChat</span>
+        <span>Feito para quem está se preparando para o ENEM.</span>
+      </footer>
+    </main>
+  </body>
 </html>

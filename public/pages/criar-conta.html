@@ -1,87 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Criar conta — RedaChat</title>
-<link rel="stylesheet" href="/static/css/base.css">
-<link rel="stylesheet" href="/static/css/auth.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar conta — RedaChat</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/owl.svg') }}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/static/css/base.css" />
+    <link rel="stylesheet" href="/static/css/auth.css" />
+  </head>
+  <body>
+    <div class="auth-shell">
+      <aside class="auth-side">
+        <div class="quote-block">
+          <p class="eyebrow">Comece agora</p>
+          <h2>
+            Cada redação enviada é um <em>passo</em> mais perto da nota mil.
+          </h2>
+        </div>
 
-<div class="auth-shell">
-  <aside class="auth-side">
-    <div class="quote-block">
-      <p class="eyebrow">Comece agora</p>
-      <h2>Cada redação enviada é um <em>passo</em> mais perto da nota mil.</h2>
+        <div class="mini-ficha paper">
+          <div class="row1">
+            <span class="lbl">NOTA GERAL</span>
+            <span class="val">840/1000</span>
+          </div>
+          <div class="bars">
+            <i class="filled"></i><i class="filled"></i><i class="filled"></i
+            ><i class="filled"></i><i></i>
+          </div>
+        </div>
+
+        <p class="footnote">GRATUITO PARA COMEÇAR · SEM CARTÃO DE CRÉDITO</p>
+      </aside>
+
+      <main class="auth-main">
+        <div class="auth-form-wrap">
+          <a href="/" class="back-home">← Voltar para a página inicial</a>
+          <div class="brandmark">
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="32" height="32" rx="9" fill="#4F8EF2" />
+              <path
+                d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12"
+                stroke="#0B1A33"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M14.5 17.5 21 24"
+                stroke="#0B1A33"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>Reda<em>Chat</em></span>
+          </div>
+
+          <h1>Criar sua conta</h1>
+          <p class="sub">
+            Leva menos de um minuto para começar a corrigir redações.
+          </p>
+
+          <form id="signup-form" class="auth-form" novalidate>
+            <div class="field" data-field="nome">
+              <label for="nome">Nome</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Seu nome completo"
+                autocomplete="name"
+                required
+              />
+              <span class="error-text"></span>
+            </div>
+
+            <div class="field" data-field="email">
+              <label for="email">E-mail</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="voce@email.com"
+                autocomplete="email"
+                required
+              />
+              <span class="error-text"></span>
+            </div>
+
+            <div class="field" data-field="senha">
+              <label for="senha">Senha</label>
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Crie uma senha"
+                autocomplete="new-password"
+                required
+              />
+              <span class="hint">Mínimo de 6 caracteres.</span>
+              <span class="error-text"></span>
+            </div>
+
+            <div class="field" data-field="confirmarSenha">
+              <label for="confirmarSenha">Confirmar senha</label>
+              <input
+                type="password"
+                id="confirmarSenha"
+                name="confirmarSenha"
+                placeholder="Repita a senha"
+                autocomplete="new-password"
+                required
+              />
+              <span class="error-text"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <span class="spinner"></span>
+              <span class="btn-label">Criar conta</span>
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Já tem uma conta? <a href="/login-page">Entrar</a>
+          </p>
+        </div>
+      </main>
     </div>
 
-    <div class="mini-ficha paper">
-      <div class="row1">
-        <span class="lbl">NOTA GERAL</span>
-        <span class="val">840/1000</span>
-      </div>
-      <div class="bars">
-        <i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i>
-      </div>
-    </div>
-
-    <p class="footnote">GRATUITO PARA COMEÇAR · SEM CARTÃO DE CRÉDITO</p>
-  </aside>
-
-  <main class="auth-main">
-    <div class="auth-form-wrap">
-      <a href="/" class="back-home">← Voltar para a página inicial</a>
-      <div class="brandmark">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="32" rx="9" fill="#4F8EF2"/>
-          <path d="M9 21.5V11c0-1.1.9-2 2-2h6.5c2.2 0 4 1.8 4 4s-1.8 4-4 4H12" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-          <path d="M14.5 17.5 21 24" stroke="#0B1A33" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span>Reda<em>Chat</em></span>
-      </div>
-
-      <h1>Criar sua conta</h1>
-      <p class="sub">Leva menos de um minuto para começar a corrigir redações.</p>
-
-      <form id="signup-form" class="auth-form" novalidate>
-        <div class="field" data-field="nome">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
-          <span class="error-text"></span>
-        </div>
-
-        <div class="field" data-field="email">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="voce@email.com" autocomplete="email" required>
-          <span class="error-text"></span>
-        </div>
-
-        <div class="field" data-field="senha">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" placeholder="Crie uma senha" autocomplete="new-password" required>
-          <span class="hint">Mínimo de 6 caracteres.</span>
-          <span class="error-text"></span>
-        </div>
-
-        <div class="field" data-field="confirmarSenha">
-          <label for="confirmarSenha">Confirmar senha</label>
-          <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita a senha" autocomplete="new-password" required>
-          <span class="error-text"></span>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-block">
-          <span class="spinner"></span>
-          <span class="btn-label">Criar conta</span>
-        </button>
-      </form>
-
-      <p class="auth-switch">Já tem uma conta? <a href="/login-page">Entrar</a></p>
-    </div>
-  </main>
-</div>
-
-<script src="/static/js/api.js"></script>
-<script src="/static/js/auth.js"></script>
-</body>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/auth.js"></script>
+  </body>
 </html>
