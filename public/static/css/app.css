@@ -4,7 +4,7 @@
 
 .app-shell{
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 280px minmax(0, 1fr);
   min-height: 100vh;
 }
 
@@ -128,7 +128,7 @@
 
 .recent-grid{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin-top: 8px;
 }
@@ -171,19 +171,21 @@
 .edit-banner button{ color: inherit; text-decoration: underline; background: none; border: none; cursor: pointer; font: inherit; }
 
 .editor-card{ padding: 26px; }
-.editor-row-2{ display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+.editor-row-2{ display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; }
 .editor-card .field{ margin-bottom: 18px; }
 
 .textarea-foot{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 4px 10px;
   margin-top: 8px;
   font-size: 12px;
   color: var(--text-faint);
   font-family: var(--font-mono);
 }
 
-.editor-actions{ display: flex; justify-content: flex-end; gap: 10px; margin-top: 6px; }
+.editor-actions{ display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 6px; }
 
 /* ---------- ficha de resultado (ligada ao base .paper) ---------- */
 .result-head{
@@ -269,12 +271,14 @@
 
 .result-actions{
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
   margin-top: 22px;
 }
 .result-actions .grow-note{
   flex: 1 1 auto;
+  min-width: 180px;
   font-size: 12.5px;
   color: var(--text-faint);
   align-self: center;
@@ -290,10 +294,10 @@
 .correcting-state p{ color: var(--text-dim); font-size: 13.5px; }
 
 @media (max-width: 980px){
-  .app-shell{ grid-template-columns: 1fr; }
+  .app-shell{ grid-template-columns: minmax(0, 1fr); }
   .app-main{ padding: 22px 18px 60px; }
-  .recent-grid{ grid-template-columns: 1fr; }
-  .editor-row-2{ grid-template-columns: 1fr; }
+  .recent-grid{ grid-template-columns: minmax(0, 1fr); }
+  .editor-row-2{ grid-template-columns: minmax(0, 1fr); }
   .ficha-top{ flex-direction: column; }
 
   .app-topbar{
@@ -311,16 +315,37 @@
   .sidebar{
     position: fixed;
     z-index: 40;
-    left: 0; top: 0; bottom: 0;
+    left: 0; top: 0;
     width: 280px;
+    height: 100vh;
+    height: 100dvh; /* real visible mobile viewport, so the footer/logout button is never pushed below the fold */
+    overflow-y: auto;
     transform: translateX(-100%);
     transition: transform .22s ease;
     box-shadow: var(--shadow-lift);
   }
+  .sidebar-footer{ flex-shrink: 0; }
   .sidebar.is-open{ transform: translateX(0); }
   .sidebar-backdrop{
     display: none;
     position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 35;
   }
   .sidebar-backdrop.is-open{ display: block; }
+}
+
+@media (max-width: 560px){
+  .hello-head h1{ font-size: 23px; }
+  .editor-head h1{ font-size: 21px; }
+  .result-head{ flex-wrap: wrap; }
+  .result-head h1{ font-size: 21px; }
+  .editor-card{ padding: 20px 16px; }
+  .ficha-card{ padding: 22px 18px 20px; }
+  .nota-stamp{ font-size: 24px; padding: 8px 14px; }
+
+  .editor-actions{ flex-direction: column-reverse; align-items: stretch; }
+  .editor-actions .btn{ width: 100%; }
+
+  .result-actions{ flex-direction: column; align-items: stretch; }
+  .result-actions .grow-note{ order: -1; }
+  .result-actions .btn{ width: 100%; }
 }

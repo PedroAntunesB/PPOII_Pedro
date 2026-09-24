@@ -221,6 +221,7 @@ p{ margin: 0; }
 
 input[type="text"], input[type="email"], input[type="password"], select, textarea{
   width: 100%;
+  min-width: 0;
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--text);
